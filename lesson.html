@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Просмотр урока на платформе EduVerse.">
+  <title>Урок 3. Операторы — EduVerse</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="catalog.html" class="nav__link">Каталог курсов</a></li>
+          <li><a href="my-courses.html" class="nav__link">Мои курсы</a></li>
+          <li><a href="blog.html" class="nav__link">Блог</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <a href="my-courses.html" class="btn btn--primary btn--sm">Личный кабинет</a>
+        <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs">
+        <a href="index.html">Главная</a> <span>/</span>
+        <a href="my-courses.html">Мои курсы</a> <span>/</span>
+        <span>JavaScript с нуля до PRO</span>
+      </nav>
+
+      <div class="lesson-layout">
+        <!-- ===== Плеер и контент урока ===== -->
+        <div>
+          <h1 style="font-size:24px;margin-bottom:6px">Модуль 1. Введение в JavaScript</h1>
+          <p class="text-muted mb-20">Урок 3. Операторы и выражения</p>
+
+          <!-- Плеер -->
+          <div class="player">
+            <span>▶ Видео урока</span>
+            <div class="player__controls">
+              <button aria-label="Пауза">⏸</button>
+              <span>05:12 / 18:40</span>
+              <button aria-label="Громкость">🔊</button>
+              <button aria-label="Полный экран" style="margin-left:auto">⛶</button>
+            </div>
+          </div>
+
+          <!-- Прогресс -->
+          <div class="progress-bar"><div class="progress-bar__fill" style="width:35%"></div></div>
+          <p class="text-muted" style="font-size:14px">Прогресс курса: 35%</p>
+
+          <!-- Навигация по урокам -->
+          <div class="mt-30" style="display:flex;gap:12px;flex-wrap:wrap">
+            <a href="#" class="btn btn--outline">← Предыдущий урок</a>
+            <a href="#" class="btn btn--primary">Следующий урок →</a>
+          </div>
+
+          <!-- Доп. материалы -->
+          <section class="section" style="padding-bottom:0">
+            <h2 class="section__title" style="font-size:20px">Дополнительные материалы</h2>
+            <ul class="text-muted" style="list-style:disc;padding-left:20px">
+              <li><a href="#" class="text-muted">Презентация к уроку (PDF)</a></li>
+              <li><a href="#" class="text-muted">Чек-лист по операторам</a></li>
+              <li><a href="#" class="text-muted">Исходники примеров (ZIP)</a></li>
+            </ul>
+          </section>
+
+          <!-- Вопрос преподавателю -->
+          <section class="section">
+            <h2 class="section__title" style="font-size:20px">Задать вопрос преподавателю</h2>
+            <form onsubmit="return false;">
+              <div class="form__group">
+                <textarea class="form__textarea" placeholder="Ваш вопрос по уроку..."></textarea>
+              </div>
+              <button type="submit" class="btn btn--primary">Отправить</button>
+            </form>
+          </section>
+        </div>
+
+        <!-- ===== Список уроков ===== -->
+        <aside class="lessons-list">
+          <div class="lessons-list__head">Содержание курса</div>
+          <a href="#" class="lessons-list__item">✓ Урок 1. Введение</a>
+          <a href="#" class="lessons-list__item">✓ Урок 2. Переменные</a>
+          <a href="#" class="lessons-list__item lessons-list__item--active">▶ Урок 3. Операторы</a>
+          <a href="#" class="lessons-list__item">Урок 4. Условия</a>
+          <a href="#" class="lessons-list__item">Урок 5. Циклы</a>
+          <a href="#" class="lessons-list__item">Урок 6. Функции</a>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="border:none;padding-top:0">© 2025 EduVerse. Все права защищены.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Подробное описание курса JavaScript с нуля до PRO на EduVerse.">
+  <title>JavaScript с нуля до PRO — EduVerse</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="catalog.html" class="nav__link nav__link--active">Каталог курсов</a></li>
+          <li><a href="about.html" class="nav__link">О нас</a></li>
+          <li><a href="teachers.html" class="nav__link">Преподаватели</a></li>
+          <li><a href="blog.html" class="nav__link">Блог</a></li>
+          <li><a href="index.html#contacts" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <a href="auth.html" class="btn btn--ghost btn--sm">Войти</a>
+        <a href="auth.html#register" class="btn btn--primary btn--sm">Регистрация</a>
+        <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs">
+        <a href="index.html">Главная</a> <span>/</span>
+        <a href="catalog.html">Каталог</a> <span>/</span>
+        <span>JavaScript с нуля до PRO</span>
+      </nav>
+
+      <div class="course-layout">
+        <!-- ===== Основной контент ===== -->
+        <div>
+          <section class="course-hero">
+            <span class="course-hero__category">Программирование</span>
+            <h1 class="course-hero__title">JavaScript с нуля до PRO</h1>
+            <div class="course-hero__meta">
+              <span class="course-hero__rating">★ 4.9 (128 отзывов)</span>
+              <span>Автор: Анна Смирнова</span>
+              <span>24 урока · 12 часов</span>
+              <span>Уровень: начальный</span>
+            </div>
+            <div class="course-hero__video">▶ Видео-превью курса</div>
+          </section>
+
+          <section class="section" style="padding-top:0">
+            <h2 class="section__title">Описание курса</h2>
+            <p class="text-muted mb-20">
+              Этот курс научит вас программировать на JavaScript с нуля. Вы освоите синтаксис,
+              работу с DOM, асинхронность, современные инструменты и соберёте 5 реальных проектов.
+            </p>
+            <h3 class="mb-20">Чему вы научитесь</h3>
+            <ul class="text-muted mb-20" style="list-style:disc;padding-left:20px">
+              <li>Писать чистый и современный JavaScript (ES6+).</li>
+              <li>Работать с DOM и событиями.</li>
+              <li>Использовать fetch и async/await.</li>
+              <li>Собирать проекты с помощью сборщиков.</li>
+            </ul>
+            <h3 class="mb-20">Для кого курс</h3>
+            <p class="text-muted">Для начинающих разработчиков, верстальщиков и всех, кто хочет освоить веб-программирование.</p>
+          </section>
+
+          <!-- ===== Программа курса ===== -->
+          <section class="section" style="padding-top:0">
+            <h2 class="section__title">Программа курса</h2>
+
+            <div class="program__module">
+              <div class="program__module-head"><span>Модуль 1. Введение в JavaScript</span><span>3 урока</span></div>
+              <div class="program__lessons">
+                <div class="program__lesson">▶ Введение и настройка окружения</div>
+                <div class="program__lesson">▶ Переменные и типы данных</div>
+                <div class="program__lesson">▶ Операторы и выражения</div>
+              </div>
+            </div>
+
+            <div class="program__module">
+              <div class="program__module-head"><span>Модуль 2. Функции и массивы</span><span>4 урока</span></div>
+              <div class="program__lessons">
+                <div class="program__lesson">▶ Функции и области видимости</div>
+                <div class="program__lesson">▶ Массивы и методы</div>
+                <div class="program__lesson">▶ Объекты</div>
+                <div class="program__lesson">▶ Практика: калькулятор</div>
+              </div>
+            </div>
+
+            <div class="program__module">
+              <div class="program__module-head"><span>Модуль 3. DOM и события</span><span>4 урока</span></div>
+              <div class="program__lessons">
+                <div class="program__lesson">▶ Поиск элементов</div>
+                <div class="program__lesson">▶ События</div>
+                <div class="program__lesson">▶ Работа с формами</div>
+                <div class="program__lesson">▶ Практика: todo-лист</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== Отзывы ===== -->
+          <section class="section" style="padding-top:0">
+            <h2 class="section__title">Отзывы студентов</h2>
+            <div class="reviews-grid">
+              <article class="review">
+                <p class="review__text">«Отличный курс! Всё разложено по полочкам, много практики.»</p>
+                <div class="review__author">
+                  <img class="review__avatar" src="images/user-1.jpg" alt="Фото студента">
+                  <div><div class="review__name">Алексей К.</div><div class="review__role">★ 5.0</div></div>
+                </div>
+              </article>
+              <article class="review">
+                <p class="review__text">«Наконец-то понял async/await. Спасибо автору!»</p>
+                <div class="review__author">
+                  <img class="review__avatar" src="images/user-2.jpg" alt="Фото студентки">
+                  <div><div class="review__name">Ольга М.</div><div class="review__role">★ 4.8</div></div>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+
+        <!-- ===== Боковая панель ===== -->
+        <aside class="course-sidebar">
+          <div class="course-sidebar__price">4 990 ₽ <span class="course-sidebar__old">6 990 ₽</span></div>
+          <span class="course-sidebar__discount">Скидка 28%</span>
+
+          <a href="lesson.html" class="btn btn--primary btn--block">Купить курс</a>
+          <a href="#" class="btn btn--outline btn--block mt-20">Добавить в корзину</a>
+
+          <ul class="course-sidebar__list">
+            <li><span>Уроков</span><span>24</span></li>
+            <li><span>Длительность</span><span>12 ч</span></li>
+            <li><span>Уровень</span><span>Начальный</span></li>
+            <li><span>Сертификат</span><span>Да</span></li>
+            <li><span>Доступ</span><span>Навсегда</span></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a href="index.html" class="logo" style="color:#fff"><span class="logo__mark">E</span><span>EduVerse</span></a>
+          <p class="mt-20" style="font-size:14px;color:#9ca3af">Открываем знания всему миру.</p>
+        </div>
+        <div>
+          <h4 class="footer__title">Платформа</h4>
+          <ul class="footer__list">
+            <li><a href="catalog.html">Каталог курсов</a></li>
+            <li><a href="teachers.html">Преподаватели</a></li>
+            <li><a href="blog.html">Блог</a></li>
+            <li><a href="about.html">О нас</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Студентам</h4>
+          <ul class="footer__list">
+            <li><a href="my-courses.html">Мои курсы</a></li>
+            <li><a href="auth.html">Вход / Регистрация</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Контакты</h4>
+          <ul class="footer__list">
+            <li><a href="mailto:info@eduverse.ru">info@eduverse.ru</a></li>
+            <li><a href="tel:+78001234567">+7 (800) 123-45-67</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">© 2025 EduVerse. Все права защищены.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Блог EduVerse: статьи об образовании, карьере, технологиях и саморазвитии.">
+  <title>Блог — EduVerse</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="catalog.html" class="nav__link">Каталог курсов</a></li>
+          <li><a href="about.html" class="nav__link">О нас</a></li>
+          <li><a href="teachers.html" class="nav__link">Преподаватели</a></li>
+          <li><a href="blog.html" class="nav__link nav__link--active">Блог</a></li>
+          <li><a href="index.html#contacts" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <a href="auth.html" class="btn btn--ghost btn--sm">Войти</a>
+        <a href="auth.html#register" class="btn btn--primary btn--sm">Регистрация</a>
+        <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs">
+        <a href="index.html">Главная</a> <span>/</span> <span>Блог</span>
+      </nav>
+
+      <h1 class="section__title">Блог EduVerse</h1>
+
+      <!-- Поиск по статьям -->
+      <form class="search mb-20" onsubmit="return false;" style="max-width:520px">
+        <input type="search" class="search__input" placeholder="Поиск по статьям...">
+        <button type="submit" class="btn btn--primary">Найти</button>
+      </form>
+
+      <!-- Сетка статей -->
+      <div class="blog-grid">
+
+        <article class="post-card">
+          <div class="post-card__image"><img src="images/blog-1.jpg" alt="Обложка статьи"></div>
+          <div class="post-card__body">
+            <p class="post-card__date">12 марта 2025</p>
+            <h2 class="post-card__title">10 навыков, которые будут востребованы в 2025 году</h2>
+            <p class="post-card__text">Разбираем, какие компетенции помогут оставаться конкурентоспособным на рынке труда.</p>
+            <a href="#" class="btn btn--outline btn--sm mt-20">Читать далее</a>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-card__image"><img src="images/blog-2.jpg" alt="Обложка статьи"></div>
+          <div class="post-card__body">
+            <p class="post-card__date">8 марта 2025</p>
+            <h2 class="post-card__title">Как учиться эффективно: 7 научно обоснованных методов</h2>
+            <p class="post-card__text">Интервальное повторение, активное вспоминание и другие техники для быстрого обучения.</p>
+            <a href="#" class="btn btn--outline btn--sm mt-20">Читать далее</a>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-card__image"><img src="images/blog-3.jpg" alt="Обложка статьи"></div>
+          <div class="post-card__body">
+            <p class="post-card__date">1 марта 2025</p>
+            <h2 class="post-card__title">С чего начать карьеру в IT: пошаговый план</h2>
+            <p class="post-card__text">Рассказываем, как выбрать направление, какие курсы пройти и как собрать портфолио.</p>
+            <a href="#" class="btn btn--outline btn--sm mt-20">Читать далее</a>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-card__image"><img src="images/blog-4.jpg" alt="Обложка статьи"></div>
+          <div class="post-card__body">
+            <p class="post-card__date">24 февраля 2025</p>
+            <h2 class="post-card__title">Тренды онлайн-образования в 2025 году</h2>
+            <p class="post-card__text">Микрообучение, AI-ассистенты и персонализация — что изменится в обучении.</p>
+            <a href="#" class="btn btn--outline btn--sm mt-20">Читать далее</a>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-card__image"><img src="images/blog-5.jpg" alt="Обложка статьи"></div>
+          <div class="post-card__body">
+            <p class="post-card__date">18 февраля 2025</p>
+            <h2 class="post-card__title">Как выбрать курс, который действительно поможет</h2>
+            <p class="post-card__text">На что смотреть: программа, преподаватель, отзывы и практика.</p>
+            <a href="#" class="btn btn--outline btn--sm mt-20">Читать далее</a>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-card__image"><img src="images/blog-6.jpg" alt="Обложка статьи"></div>
+          <div class="post-card__body">
+            <p class="post-card__date">10 февраля 2025</p>
+            <h2 class="post-card__title">Саморазвитие без выгорания: советы психолога</h2>
+            <p class="post-card__text">Как учиться регулярно и не терять мотивацию.</p>
+            <a href="#" class="btn btn--outline btn--sm mt-20">Читать далее</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Пагинация -->
+      <nav class="pagination" aria-label="Пагинация">
+        <a href="#" class="pagination__item pagination__item--active">1</a>
+        <a href="#" class="pagination__item">2</a>
+        <a href="#" class="pagination__item">3</a>
+        <a href="#" class="pagination__item">→</a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a href="index.html" class="logo" style="color:#fff"><span class="logo__mark">E</span><span>EduVerse</span></a>
+          <p class="mt-20" style="font-size:14px;color:#9ca3af">Открываем знания всему миру.</p>
+        </div>
+        <div>
+          <h4 class="footer__title">Платформа</h4>
+          <ul class="footer__list">
+            <li><a href="catalog.html">Каталог курсов</a></li>
+            <li><a href="teachers.html">Преподаватели</a></li>
+            <li><a href="blog.html">Блог</a></li>
+            <li><a href="about.html">О нас</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Студентам</h4>
+          <ul class="footer__list">
+            <li><a href="my-courses.html">Мои курсы</a></li>
+            <li><a href="auth.html">Вход / Регистрация</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Контакты</h4>
+          <ul class="footer__list">
+            <li><a href="mailto:info@eduverse.ru">info@eduverse.ru</a></li>
+            <li><a href="tel:+78001234567">+7 (800) 123-45-67</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">© 2025 EduVerse. Все права защищены.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

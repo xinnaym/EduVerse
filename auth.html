@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Регистрация и вход на платформе EduVerse.">
+  <title>Вход и регистрация — EduVerse</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="catalog.html" class="nav__link">Каталог курсов</a></li>
+          <li><a href="about.html" class="nav__link">О нас</a></li>
+          <li><a href="teachers.html" class="nav__link">Преподаватели</a></li>
+          <li><a href="blog.html" class="nav__link">Блог</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <a href="index.html" class="btn btn--ghost btn--sm">На главную</a>
+        <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- ===== Форма входа ===== -->
+      <section class="auth" id="login">
+        <h1 class="auth__title">Вход</h1>
+        <p class="auth__subtitle">Рады видеть вас снова на EduVerse</p>
+
+        <form onsubmit="return false;">
+          <div class="form__group">
+            <label class="form__label" for="login-email">Электронная почта</label>
+            <input class="form__input" type="email" id="login-email" placeholder="you@example.com" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="login-password">Пароль</label>
+            <input class="form__input" type="password" id="login-password" placeholder="••••••••" required>
+          </div>
+          <div class="form__group" style="display:flex;justify-content:space-between;align-items:center">
+            <label class="form__check"><input type="checkbox"> Запомнить меня</label>
+            <a href="#reset" style="font-size:14px;color:var(--color-primary);font-weight:600">Забыли пароль?</a>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Войти</button>
+        </form>
+
+        <p class="auth__footer">Нет аккаунта? <a href="#register">Зарегистрироваться</a></p>
+      </section>
+
+      <!-- ===== Форма регистрации ===== -->
+      <section class="auth" id="register">
+        <h1 class="auth__title">Регистрация</h1>
+        <p class="auth__subtitle">Создайте аккаунт и начните обучение</p>
+
+        <form onsubmit="return false;">
+          <div class="form__group">
+            <label class="form__label" for="reg-fio">ФИО</label>
+            <input class="form__input" type="text" id="reg-fio" placeholder="Иванов Иван Иванович" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="reg-email">Электронная почта</label>
+            <input class="form__input" type="email" id="reg-email" placeholder="you@example.com" required>
+          </div>
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label" for="reg-password">Пароль</label>
+              <input class="form__input" type="password" id="reg-password" placeholder="••••••••" required>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="reg-password2">Подтверждение пароля</label>
+              <input class="form__input" type="password" id="reg-password2" placeholder="••••••••" required>
+            </div>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="reg-role">Роль</label>
+            <select class="form__select" id="reg-role">
+              <option value="student">Студент</option>
+              <option value="teacher">Преподаватель</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label class="form__check"><input type="checkbox" required> Я согласен с условиями использования</label>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Создать аккаунт</button>
+        </form>
+
+        <p class="auth__footer">Уже есть аккаунт? <a href="#login">Войти</a></p>
+      </section>
+
+      <!-- ===== Восстановление пароля ===== -->
+      <section class="auth" id="reset">
+        <h1 class="auth__title">Восстановление пароля</h1>
+        <p class="auth__subtitle">Укажите email — мы отправим ссылку для сброса</p>
+        <form onsubmit="return false;">
+          <div class="form__group">
+            <label class="form__label" for="reset-email">Электронная почта</label>
+            <input class="form__input" type="email" id="reset-email" placeholder="you@example.com" required>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Отправить ссылку</button>
+        </form>
+        <p class="auth__footer"><a href="#login">← Вернуться ко входу</a></p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="border:none;padding-top:0">© 2025 EduVerse. Все права защищены.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

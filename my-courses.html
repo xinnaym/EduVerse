@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Личный кабинет студента EduVerse — мои курсы.">
+  <title>Мои курсы — EduVerse</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="catalog.html" class="nav__link">Каталог курсов</a></li>
+          <li><a href="my-courses.html" class="nav__link nav__link--active">Мои курсы</a></li>
+          <li><a href="blog.html" class="nav__link">Блог</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <a href="auth.html" class="btn btn--ghost btn--sm">Выйти</a>
+        <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container" style="padding-top:30px">
+      <h1 class="section__title">Мои курсы</h1>
+
+      <div class="dashboard">
+        <!-- Боковое меню -->
+        <aside class="sidebar">
+          <a href="my-courses.html" class="sidebar__link sidebar__link--active">Мои курсы</a>
+          <a href="#" class="sidebar__link">Сертификаты</a>
+          <a href="#" class="sidebar__link">Вопросы</a>
+          <a href="#" class="sidebar__link">Настройки профиля</a>
+        </aside>
+
+        <!-- Контент -->
+        <div>
+          <div class="courses-grid">
+
+            <article class="course-card">
+              <div class="course-card__image"><img src="images/course-1.jpg" alt="JavaScript с нуля"></div>
+              <div class="course-card__body">
+                <span class="badge badge--warning">В процессе</span>
+                <h3 class="course-card__title">JavaScript с нуля до PRO</h3>
+                <p class="course-card__author">Прогресс: 35%</p>
+                <div class="progress-bar"><div class="progress-bar__fill" style="width:35%"></div></div>
+                <a href="lesson.html" class="btn btn--primary btn--block mt-20">Продолжить обучение</a>
+              </div>
+            </article>
+
+            <article class="course-card">
+              <div class="course-card__image"><img src="images/course-2.jpg" alt="UI/UX дизайн"></div>
+              <div class="course-card__body">
+                <span class="badge badge--success">Завершён</span>
+                <h3 class="course-card__title">UI/UX дизайн в Figma</h3>
+                <p class="course-card__author">Прогресс: 100%</p>
+                <div class="progress-bar"><div class="progress-bar__fill" style="width:100%"></div></div>
+                <a href="#" class="btn btn--outline btn--block mt-20">Скачать сертификат</a>
+              </div>
+            </article>
+
+            <article class="course-card">
+              <div class="course-card__image"><img src="images/course-3.jpg" alt="Интернет-маркетинг"></div>
+              <div class="course-card__body">
+                <span class="badge badge--warning">В процессе</span>
+                <h3 class="course-card__title">Интернет-маркетинг с нуля</h3>
+                <p class="course-card__author">Прогресс: 62%</p>
+                <div class="progress-bar"><div class="progress-bar__fill" style="width:62%"></div></div>
+                <a href="lesson.html" class="btn btn--primary btn--block mt-20">Продолжить обучение</a>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Рекомендации -->
+          <section class="section">
+            <h2 class="section__title" style="font-size:22px">Рекомендуем вам</h2>
+            <div class="courses-grid">
+              <article class="course-card">
+                <div class="course-card__image"><img src="images/course-5.jpg" alt="Python для анализа данных"></div>
+                <div class="course-card__body">
+                  <span class="course-card__category">Программирование</span>
+                  <h3 class="course-card__title">Python для анализа данных</h3>
+                  <p class="course-card__author">Сергей Кузнецов</p>
+                  <div class="course-card__meta"><span class="course-card__rating">★ 4.9</span><span class="course-card__price">5 490 ₽</span></div>
+                </div>
+              </article>
+              <article class="course-card">
+                <div class="course-card__image"><img src="images/course-6.jpg" alt="Личный бренд"></div>
+                <div class="course-card__body">
+                  <span class="course-card__category">Личностный рост</span>
+                  <h3 class="course-card__title">Личный бренд и карьера</h3>
+                  <p class="course-card__author">Елена Орлова</p>
+                  <div class="course-card__meta"><span class="course-card__rating">★ 4.6</span><span class="course-card__price">1 990 ₽</span></div>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="border:none;padding-top:0">© 2025 EduVerse. Все права защищены.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

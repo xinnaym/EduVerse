@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Каталог курсов EduVerse: поиск, фильтры, сортировка.">
+  <title>Каталог курсов — EduVerse</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="catalog.html" class="nav__link nav__link--active">Каталог курсов</a></li>
+          <li><a href="about.html" class="nav__link">О нас</a></li>
+          <li><a href="teachers.html" class="nav__link">Преподаватели</a></li>
+          <li><a href="blog.html" class="nav__link">Блог</a></li>
+          <li><a href="index.html#contacts" class="nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <a href="auth.html" class="btn btn--ghost btn--sm">Войти</a>
+        <a href="auth.html#register" class="btn btn--primary btn--sm">Регистрация</a>
+        <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- Хлебные крошки -->
+      <nav class="breadcrumbs">
+        <a href="index.html">Главная</a> <span>/</span> <span>Каталог курсов</span>
+      </nav>
+
+      <h1 class="section__title">Каталог курсов</h1>
+
+      <div class="catalog">
+        <!-- ===== Фильтры ===== -->
+        <aside class="filters">
+          <div class="filters__group">
+            <h3 class="filters__title">Категория</h3>
+            <label class="filters__label"><input type="checkbox"> Программирование</label>
+            <label class="filters__label"><input type="checkbox"> Дизайн</label>
+            <label class="filters__label"><input type="checkbox"> Маркетинг</label>
+            <label class="filters__label"><input type="checkbox"> Языки</label>
+            <label class="filters__label"><input type="checkbox"> Личностный рост</label>
+          </div>
+
+          <div class="filters__group">
+            <h3 class="filters__title">Уровень сложности</h3>
+            <label class="filters__label"><input type="radio" name="level"> Начальный</label>
+            <label class="filters__label"><input type="radio" name="level"> Средний</label>
+            <label class="filters__label"><input type="radio" name="level"> Продвинутый</label>
+          </div>
+
+          <div class="filters__group">
+            <h3 class="filters__title">Цена</h3>
+            <label class="filters__label"><input type="checkbox"> Бесплатные</label>
+            <label class="filters__label"><input type="checkbox"> Платные</label>
+          </div>
+
+          <div class="filters__group">
+            <h3 class="filters__title">Рейтинг</h3>
+            <label class="filters__label"><input type="radio" name="rating"> 4.5 и выше</label>
+            <label class="filters__label"><input type="radio" name="rating"> 4.0 и выше</label>
+            <label class="filters__label"><input type="radio" name="rating"> 3.0 и выше</label>
+          </div>
+        </aside>
+
+        <!-- ===== Результаты ===== -->
+        <div>
+          <div class="catalog__top">
+            <form class="search" onsubmit="return false;">
+              <input type="search" class="search__input" placeholder="Поиск по названию, преподавателю...">
+              <button type="submit" class="btn btn--primary">Найти</button>
+            </form>
+            <select class="select" aria-label="Сортировка">
+              <option>По популярности</option>
+              <option>По новизне</option>
+              <option>Цена: по возрастанию</option>
+              <option>Цена: по убыванию</option>
+              <option>По рейтингу</option>
+            </select>
+          </div>
+
+          <div class="courses-grid">
+            <article class="course-card">
+              <a href="course.html" class="course-card__image"><img src="images/course-1.jpg" alt="JavaScript с нуля"></a>
+              <div class="course-card__body">
+                <span class="course-card__category">Программирование</span>
+                <h3 class="course-card__title">JavaScript с нуля до PRO</h3>
+                <p class="course-card__author">Анна Смирнова</p>
+                <div class="course-card__meta"><span class="course-card__rating">★ 4.9</span><span class="course-card__price">4 990 ₽</span></div>
+              </div>
+            </article>
+
+            <article class="course-card">
+              <a href="course.html" class="course-card__image"><img src="images/course-2.jpg" alt="UI/UX дизайн"></a>
+              <div class="course-card__body">
+                <span class="course-card__category">Дизайн</span>
+                <h3 class="course-card__title">UI/UX дизайн в Figma</h3>
+                <p class="course-card__author">Игорь Петров</p>
+                <div class="course-card__meta"><span class="course-card__rating">★ 4.8</span><span class="course-card__price">3 990 ₽</span></div>
+              </div>
+            </article>
+
+            <article class="course-card">
+              <a href="course.html" class="course-card__image"><img src="images/course-3.jpg" alt="Интернет-маркетинг"></a>
+              <div class="course-card__body">
+                <span class="course-card__category">Маркетинг</span>
+                <h3 class="course-card__title">Интернет-маркетинг с нуля</h3>
+                <p class="course-card__author">Мария Иванова</p>
+                <div class="course-card__meta"><span class="course-card__rating">★ 4.7</span><span class="course-card__price">2 990 ₽</span></div>
+              </div>
+            </article>
+
+            <article class="course-card">
+              <a href="course.html" class="course-card__image"><img src="images/course-4.jpg" alt="Английский для IT"></a>
+              <div class="course-card__body">
+                <span class="course-card__category">Языки</span>
+                <h3 class="course-card__title">Английский для IT</h3>
+                <p class="course-card__author">Джон Смит</p>
+                <div class="course-card__meta"><span class="course-card__rating">★ 5.0</span><span class="course-card__price course-card__price--free">Бесплатно</span></div>
+              </div>
+            </article>
+
+            <article class="course-card">
+              <a href="course.html" class="course-card__image"><img src="images/course-5.jpg" alt="Python для анализа данных"></a>
+              <div class="course-card__body">
+                <span class="course-card__category">Программирование</span>
+                <h3 class="course-card__title">Python для анализа данных</h3>
+                <p class="course-card__author">Сергей Кузнецов</p>
+                <div class="course-card__meta"><span class="course-card__rating">★ 4.9</span><span class="course-card__price">5 490 ₽</span></div>
+              </div>
+            </article>
+
+            <article class="course-card">
+              <a href="course.html" class="course-card__image"><img src="images/course-6.jpg" alt="Личный бренд"></a>
+              <div class="course-card__body">
+                <span class="course-card__category">Личностный рост</span>
+                <h3 class="course-card__title">Личный бренд и карьера</h3>
+                <p class="course-card__author">Елена Орлова</p>
+                <div class="course-card__meta"><span class="course-card__rating">★ 4.6</span><span class="course-card__price">1 990 ₽</span></div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Пагинация -->
+          <nav class="pagination" aria-label="Пагинация">
+            <a href="#" class="pagination__item pagination__item--active">1</a>
+            <a href="#" class="pagination__item">2</a>
+            <a href="#" class="pagination__item">3</a>
+            <a href="#" class="pagination__item">→</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a href="index.html" class="logo" style="color:#fff"><span class="logo__mark">E</span><span>EduVerse</span></a>
+          <p class="mt-20" style="font-size:14px;color:#9ca3af">Открываем знания всему миру.</p>
+        </div>
+        <div>
+          <h4 class="footer__title">Платформа</h4>
+          <ul class="footer__list">
+            <li><a href="catalog.html">Каталог курсов</a></li>
+            <li><a href="teachers.html">Преподаватели</a></li>
+            <li><a href="blog.html">Блог</a></li>
+            <li><a href="about.html">О нас</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Студентам</h4>
+          <ul class="footer__list">
+            <li><a href="my-courses.html">Мои курсы</a></li>
+            <li><a href="auth.html">Вход / Регистрация</a></li>
+            <li><a href="#">Сертификаты</a></li>
+            <li><a href="#">Помощь</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Контакты</h4>
+          <ul class="footer__list">
+            <li><a href="mailto:info@eduverse.ru">info@eduverse.ru</a></li>
+            <li><a href="tel:+78001234567">+7 (800) 123-45-67</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">© 2025 EduVerse. Все права защищены.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

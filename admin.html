@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Админ-панель платформы EduVerse.">
+  <title>Админ-панель — EduVerse</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="admin.html" class="nav__link nav__link--active">Админ-панель</a></li>
+          <li><a href="catalog.html" class="nav__link">Каталог</a></li>
+          <li><a href="blog.html" class="nav__link">Блог</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <a href="auth.html" class="btn btn--ghost btn--sm">Выйти</a>
+        <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container" style="padding-top:30px">
+      <h1 class="section__title">Админ-панель</h1>
+
+      <div class="dashboard">
+        <!-- Боковое меню -->
+        <aside class="sidebar">
+          <a href="admin.html" class="sidebar__link sidebar__link--active">Обзор</a>
+          <a href="#" class="sidebar__link">Пользователи</a>
+          <a href="#" class="sidebar__link">Курсы</a>
+          <a href="#" class="sidebar__link">Категории</a>
+          <a href="#" class="sidebar__link">Блог</a>
+        </aside>
+
+        <!-- Контент -->
+        <div>
+          <!-- Общая статистика -->
+          <div class="stats">
+            <div class="stat-card">
+              <div class="stat-card__label">Активных пользователей</div>
+              <div class="stat-card__value">12 480</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__label">Преподавателей</div>
+              <div class="stat-card__value">184</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__label">Продаж</div>
+              <div class="stat-card__value">3 216</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__label">Общий доход</div>
+              <div class="stat-card__value">8 420 000 ₽</div>
+            </div>
+          </div>
+
+          <!-- Управление пользователями -->
+          <h2 class="section__title" style="font-size:22px">Пользователи</h2>
+          <div class="table-wrap mb-20">
+            <table class="table">
+              <thead>
+                <tr><th>ID</th><th>ФИО</th><th>Email</th><th>Роль</th><th>Статус</th><th>Действия</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1024</td><td>Анна Смирнова</td><td>anna@eduverse.ru</td>
+                  <td><span class="badge badge--info">Преподаватель</span></td>
+                  <td><span class="badge badge--success">Активен</span></td>
+                  <td>
+                    <a href="#" class="btn btn--outline btn--sm">Изменить роль</a>
+                    <a href="#" class="btn btn--outline btn--sm">Блокировать</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1025</td><td>Алексей Кузнецов</td><td>alex@eduverse.ru</td>
+                  <td><span class="badge badge--success">Студент</span></td>
+                  <td><span class="badge badge--success">Активен</span></td>
+                  <td>
+                    <a href="#" class="btn btn--outline btn--sm">Изменить роль</a>
+                    <a href="#" class="btn btn--outline btn--sm">Блокировать</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1026</td><td>Игорь Петров</td><td>igor@eduverse.ru</td>
+                  <td><span class="badge badge--success">Студент</span></td>
+                  <td><span class="badge badge--danger">Заблокирован</span></td>
+                  <td>
+                    <a href="#" class="btn btn--outline btn--sm">Изменить роль</a>
+                    <a href="#" class="btn btn--outline btn--sm">Разблокировать</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Управление курсами -->
+          <h2 class="section__title" style="font-size:22px">Курсы</h2>
+          <div class="table-wrap mb-20">
+            <table class="table">
+              <thead>
+                <tr><th>Курс</th><th>Автор</th><th>Категория</th><th>Цена</th><th>Действия</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>JavaScript с нуля до PRO</td><td>Анна Смирнова</td><td>Программирование</td><td>4 990 ₽</td>
+                  <td>
+                    <a href="#" class="btn btn--outline btn--sm">Ред.</a>
+                    <a href="#" class="btn btn--outline btn--sm">Удалить</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>UI/UX дизайн в Figma</td><td>Игорь Петров</td><td>Дизайн</td><td>3 990 ₽</td>
+                  <td>
+                    <a href="#" class="btn btn--outline btn--sm">Ред.</a>
+                    <a href="#" class="btn btn--outline btn--sm">Удалить</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Категории -->
+          <h2 class="section__title" style="font-size:22px">Категории</h2>
+          <form class="mb-20" onsubmit="return false;" style="display:flex;gap:12px;flex-wrap:wrap">
+            <input class="form__input" style="max-width:280px" type="text" placeholder="Новая категория">
+            <button type="submit" class="btn btn--primary">Добавить</button>
+          </form>
+          <div class="table-wrap mb-20">
+            <table class="table">
+              <thead><tr><th>Категория</th><th>Курсов</th><th>Действия</th></tr></thead>
+              <tbody>
+                <tr><td>Программирование</td><td>142</td><td><a href="#" class="btn btn--outline btn--sm">Ред.</a> <a href="#" class="btn btn--outline btn--sm">Удалить</a></td></tr>
+                <tr><td>Дизайн</td><td>86</td><td><a href="#" class="btn btn--outline btn--sm">Ред.</a> <a href="#" class="btn btn--outline btn--sm">Удалить</a></td></tr>
+                <tr><td>Маркетинг</td><td>54</td><td><a href="#" class="btn btn--outline btn--sm">Ред.</a> <a href="#" class="btn btn--outline btn--sm">Удалить</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Блог -->
+          <h2 class="section__title" style="font-size:22px">Управление блогом</h2>
+          <form onsubmit="return false;">
+            <div class="form__group">
+              <label class="form__label" for="post-title">Заголовок статьи</label>
+              <input class="form__input" type="text" id="post-title" placeholder="Например, 10 навыков будущего">
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="post-text">Текст статьи</label>
+              <textarea class="form__textarea" id="post-text" placeholder="Текст статьи..."></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary">Опубликовать</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="border:none;padding-top:0">© 2025 EduVerse. Все права защищены.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
