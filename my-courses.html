@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Личный кабинет студента EduVerse — мои курсы.">
-  <title>Мои курсы — EduVerse</title>
+  <meta name="description" content="Личный кабинет студента EduVerse: мои курсы, статусы прохождения, сертификаты и персональные рекомендации.">
+  <title>Мои курсы — Личный кабинет — EduVerse</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+  <!-- Шапка сайта -->
   <header class="header">
     <div class="container header__inner">
-      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
+      <a href="index.html" class="logo">EduVerse</a>
       <nav class="nav" id="nav">
         <ul class="nav__list">
           <li><a href="catalog.html" class="nav__link">Каталог курсов</a></li>
@@ -21,99 +22,255 @@
         </ul>
       </nav>
       <div class="header__actions">
-        <a href="auth.html" class="btn btn--ghost btn--sm">Выйти</a>
+        <a href="my-courses.html" class="btn btn--primary btn--sm">Мои курсы</a>
         <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
 
   <main>
-    <div class="container" style="padding-top:30px">
-      <h1 class="section__title">Мои курсы</h1>
+    <div class="container" style="padding-top:30px;padding-bottom:60px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:16px">
+        <div>
+          <h1 class="section__title" style="margin-bottom:6px">Личный кабинет студента</h1>
+          <p class="text-muted" id="user-greeting">Добро пожаловать в учебный профиль EduVerse</p>
+        </div>
+        <a href="catalog.html" class="btn btn--primary btn--sm">+ Добавить новый курс</a>
+      </div>
 
       <div class="dashboard">
         <!-- Боковое меню -->
         <aside class="sidebar">
-          <a href="my-courses.html" class="sidebar__link sidebar__link--active">Мои курсы</a>
-          <a href="#" class="sidebar__link">Сертификаты</a>
-          <a href="#" class="sidebar__link">Вопросы</a>
-          <a href="#" class="sidebar__link">Настройки профиля</a>
+          <a href="my-courses.html" class="sidebar__link sidebar__link--active">🎓 Мои курсы</a>
+          <a href="javascript:void(0)" onclick="filterCabinetTab('certificates')" class="sidebar__link">🏆 Сертификаты</a>
+          <a href="catalog.html" class="sidebar__link">🔍 Каталог курсов</a>
         </aside>
 
-        <!-- Контент -->
+        <!-- Контент личного кабинета -->
         <div>
-          <div class="courses-grid">
-
-            <article class="course-card">
-              <div class="course-card__image"><img src="images/course-1.jpg" alt="JavaScript с нуля"></div>
-              <div class="course-card__body">
-                <span class="badge badge--warning">В процессе</span>
-                <h3 class="course-card__title">JavaScript с нуля до PRO</h3>
-                <p class="course-card__author">Прогресс: 35%</p>
-                <div class="progress-bar"><div class="progress-bar__fill" style="width:35%"></div></div>
-                <a href="lesson.html" class="btn btn--primary btn--block mt-20">Продолжить обучение</a>
-              </div>
-            </article>
-
-            <article class="course-card">
-              <div class="course-card__image"><img src="images/course-2.jpg" alt="UI/UX дизайн"></div>
-              <div class="course-card__body">
-                <span class="badge badge--success">Завершён</span>
-                <h3 class="course-card__title">UI/UX дизайн в Figma</h3>
-                <p class="course-card__author">Прогресс: 100%</p>
-                <div class="progress-bar"><div class="progress-bar__fill" style="width:100%"></div></div>
-                <a href="#" class="btn btn--outline btn--block mt-20">Скачать сертификат</a>
-              </div>
-            </article>
-
-            <article class="course-card">
-              <div class="course-card__image"><img src="images/course-3.jpg" alt="Интернет-маркетинг"></div>
-              <div class="course-card__body">
-                <span class="badge badge--warning">В процессе</span>
-                <h3 class="course-card__title">Интернет-маркетинг с нуля</h3>
-                <p class="course-card__author">Прогресс: 62%</p>
-                <div class="progress-bar"><div class="progress-bar__fill" style="width:62%"></div></div>
-                <a href="lesson.html" class="btn btn--primary btn--block mt-20">Продолжить обучение</a>
-              </div>
-            </article>
-
+          <!-- Статистика студента -->
+          <div class="stats mb-20" style="margin-bottom:28px">
+            <div class="stat-card">
+              <div class="stat-card__label">Курсов в обучении</div>
+              <div class="stat-card__value" id="stat-active-courses">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__label">Завершено программ</div>
+              <div class="stat-card__value" id="stat-completed-courses">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__label">Получено сертификатов</div>
+              <div class="stat-card__value" id="stat-certificates-count">0</div>
+            </div>
           </div>
 
-          <!-- Рекомендации -->
-          <section class="section">
-            <h2 class="section__title" style="font-size:22px">Рекомендуем вам</h2>
-            <div class="courses-grid">
-              <article class="course-card">
-                <div class="course-card__image"><img src="images/course-5.jpg" alt="Python для анализа данных"></div>
-                <div class="course-card__body">
-                  <span class="course-card__category">Программирование</span>
-                  <h3 class="course-card__title">Python для анализа данных</h3>
-                  <p class="course-card__author">Сергей Кузнецов</p>
-                  <div class="course-card__meta"><span class="course-card__rating">★ 4.9</span><span class="course-card__price">5 490 ₽</span></div>
-                </div>
-              </article>
-              <article class="course-card">
-                <div class="course-card__image"><img src="images/course-6.jpg" alt="Личный бренд"></div>
-                <div class="course-card__body">
-                  <span class="course-card__category">Личностный рост</span>
-                  <h3 class="course-card__title">Личный бренд и карьера</h3>
-                  <p class="course-card__author">Елена Орлова</p>
-                  <div class="course-card__meta"><span class="course-card__rating">★ 4.6</span><span class="course-card__price">1 990 ₽</span></div>
-                </div>
-              </article>
+          <!-- Секция курсов студента -->
+          <div id="my-courses-section">
+            <h2 class="section__title" style="font-size:22px;margin-bottom:20px">Записанные курсы</h2>
+            
+            <div class="courses-grid" id="student-courses-grid">
+              <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--color-text-muted)">
+                Загрузка ваших курсов...
+              </div>
             </div>
-          </section>
+          </div>
+
+          <!-- Секция полученных сертификатов -->
+          <div id="certificates-section" style="margin-top:40px">
+            <h2 class="section__title" style="font-size:22px;margin-bottom:16px">Доступные сертификаты</h2>
+            <div id="certificates-list-container" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));gap:20px">
+              <!-- Карточки сертификатов -->
+            </div>
+          </div>
+
+          <!-- Персональные рекомендации курсов -->
+          <div style="margin-top:50px;border-top:1px solid #e2e8f0;padding-top:40px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+              <div>
+                <h2 class="section__title" style="font-size:22px;margin-bottom:4px">Рекомендуем вам для развития</h2>
+                <p class="text-muted">Курсы, подобранные на основе ваших интересов и прогресса</p>
+              </div>
+              <a href="catalog.html" class="btn btn--outline btn--sm">В каталог →</a>
+            </div>
+
+            <div class="courses-grid" id="recommendations-grid">
+              <!-- Рекомендации -->
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </main>
 
+  <!-- Подвал сайта -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__bottom" style="border:none;padding-top:0">© 2025 EduVerse. Все права защищены.</div>
+      <div class="footer__bottom">© 2026 EduVerse. Все права защищены.</div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    let myCoursesData = [];
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (!EduVerse.currentUser) {
+        document.getElementById('my-courses-section').innerHTML = `
+          <div style="background:#f8fafc;border:1px dashed #cbd5e1;border-radius:16px;padding:50px 20px;text-align:center">
+            <h3>Вы не авторизованы</h3>
+            <p class="text-muted mt-20">Войдите в свой аккаунт, чтобы просмотреть купленные курсы и сертификаты.</p>
+            <div style="display:flex;gap:12px;justify-content:center;margin-top:20px">
+              <a href="auth.html" class="btn btn--primary">Войти в личный кабинет</a>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      document.getElementById('user-greeting').textContent = `С возвращением, ${EduVerse.currentUser.full_name}! Продолжайте свой путь к знаниям.`;
+      await loadStudentCourses();
+    });
+
+    async function loadStudentCourses() {
+      try {
+        const data = await EduVerse.api('/api/my-courses');
+        myCoursesData = data.courses || [];
+
+        const activeCount = myCoursesData.filter(c => c.status !== 'completed').length;
+        const completedCount = myCoursesData.filter(c => c.status === 'completed').length;
+
+        document.getElementById('stat-active-courses').textContent = activeCount;
+        document.getElementById('stat-completed-courses').textContent = completedCount;
+        document.getElementById('stat-certificates-count').textContent = completedCount;
+
+        renderCoursesGrid(myCoursesData);
+        renderCertificates(myCoursesData.filter(c => c.certificate_eligible));
+        renderRecommendations(data.recommendations || []);
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    function renderCoursesGrid(courses) {
+      const grid = document.getElementById('student-courses-grid');
+      if (!courses || courses.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column:1/-1;text-align:center;padding:50px 20px;background:#f8fafc;border-radius:16px">
+            <div style="font-size:36px;margin-bottom:12px">📚</div>
+            <h3 style="font-size:18px;margin-bottom:8px">У вас пока нет купленных курсов</h3>
+            <p class="text-muted" style="margin-bottom:20px">Выберите курс в каталоге, чтобы начать обучение прямо сейчас!</p>
+            <a href="catalog.html" class="btn btn--primary">Перейти в каталог курсов</a>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = courses.map(c => {
+        const isCompleted = c.status === 'completed';
+        const badgeClass = isCompleted ? 'badge--success' : 'badge--warning';
+        const statusLabel = isCompleted ? 'Завершён (100%)' : `В процессе (${c.progress_percent}%)`;
+        const targetLessonId = c.next_lesson_id || 1;
+
+        return `
+          <article class="course-card">
+            <div class="course-card__image" style="position:relative">
+              <img src="${c.image}" alt="${c.title}" style="width:100%;height:180px;object-fit:cover">
+              <span class="badge ${badgeClass}" style="position:absolute;top:10px;right:10px">${statusLabel}</span>
+            </div>
+            <div class="course-card__body">
+              <h3 class="course-card__title">
+                <a href="course.html?id=${c.id}" style="color:inherit;text-decoration:none">${c.title}</a>
+              </h3>
+              <p class="course-card__author">Пройдено уроков: ${c.completed_lessons} из ${c.total_lessons}</p>
+              
+              <div class="progress-bar" style="margin:10px 0">
+                <div class="progress-bar__fill" style="width:${c.progress_percent}%"></div>
+              </div>
+
+              <div style="display:flex;gap:8px;margin-top:auto">
+                <a href="lesson.html?id=${targetLessonId}" class="btn btn--primary btn--block">
+                  ${isCompleted ? 'Повторить материал' : 'Продолжить обучение'}
+                </a>
+              </div>
+              ${isCompleted ? `
+                <button class="btn btn--outline btn--sm btn--block mt-20" onclick="EduVerse.openCertificate('${EduVerse.currentUser?.full_name}', '${c.title}')">
+                  🏆 Сертификат
+                </button>
+              ` : ''}
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderCertificates(completedCourses) {
+      const container = document.getElementById('certificates-list-container');
+      if (!completedCourses || completedCourses.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column:1/-1;background:#f8fafc;padding:24px;border-radius:12px;border:1px solid #e2e8f0;text-align:center">
+            <p class="text-muted">Завершите курс на 100%, чтобы получить именной квалификационный сертификат.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = completedCourses.map(c => `
+        <div style="background:#fff;border:2px solid #f59e0b;border-radius:12px;padding:20px;display:flex;flex-direction:column;justify-content:space-between">
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <span style="font-size:28px">🎓</span>
+              <div>
+                <strong style="font-size:16px;display:block">Сертификат об окончании</strong>
+                <span class="text-muted" style="font-size:12px">EduVerse Official Verification</span>
+              </div>
+            </div>
+            <p style="font-size:15px;font-weight:600;color:var(--color-primary);margin-bottom:12px">«${c.title}»</p>
+          </div>
+          <button class="btn btn--outline btn--block" onclick="EduVerse.openCertificate('${EduVerse.currentUser?.full_name}', '${c.title}')">
+            Открыть и скачать сертификат →
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function renderRecommendations(recList) {
+      const grid = document.getElementById('recommendations-grid');
+      if (!recList || recList.length === 0) {
+        grid.innerHTML = '<p class="text-muted">Все доступные курсы уже добавлены в ваш кабинет!</p>';
+        return;
+      }
+
+      grid.innerHTML = recList.map(c => {
+        const price = c.is_free ? 'Бесплатно' : `${c.price.toLocaleString('ru-RU')} ₽`;
+        return `
+          <article class="course-card">
+            <a href="course.html?id=${c.id}" class="course-card__image">
+              <img src="${c.image}" alt="${c.title}" style="width:100%;height:160px;object-fit:cover">
+            </a>
+            <div class="course-card__body">
+              <span class="course-card__category">${c.category_name || 'Обучение'}</span>
+              <h3 class="course-card__title">
+                <a href="course.html?id=${c.id}" style="color:inherit;text-decoration:none">${c.title}</a>
+              </h3>
+              <p class="course-card__author">${c.teacher_name || 'Преподаватель'}</p>
+              <div class="course-card__meta" style="margin-top:auto">
+                <span class="course-card__rating">★ ${c.rating}</span>
+                <span class="course-card__price">${price}</span>
+              </div>
+              <button class="btn btn--outline btn--sm mt-20" onclick="EduVerse.purchaseCourse(${c.id}, '${c.title.replace(/'/g, "\\'")}', ${c.is_free ? 0 : c.price})">
+                ${c.is_free ? 'Записаться' : 'Купить курс'}
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function filterCabinetTab(tab) {
+      if (tab === 'certificates') {
+        document.getElementById('certificates-section').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  </script>
 </body>
 </html>

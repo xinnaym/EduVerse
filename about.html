@@ -3,23 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="О платформе EduVerse: миссия, история, команда.">
+  <meta name="description" content="О платформе EduVerse: миссия, видение, ценности, история создания и команда проекта.">
   <title>О нас — EduVerse</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+  <!-- Шапка сайта -->
   <header class="header">
     <div class="container header__inner">
-      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
+      <a href="index.html" class="logo">EduVerse</a>
       <nav class="nav" id="nav">
         <ul class="nav__list">
           <li><a href="catalog.html" class="nav__link">Каталог курсов</a></li>
           <li><a href="about.html" class="nav__link nav__link--active">О нас</a></li>
           <li><a href="teachers.html" class="nav__link">Преподаватели</a></li>
           <li><a href="blog.html" class="nav__link">Блог</a></li>
-          <li><a href="index.html#contacts" class="nav__link">Контакты</a></li>
+          <li><a href="#contacts" class="nav__link">Контакты</a></li>
         </ul>
       </nav>
       <div class="header__actions">
@@ -31,100 +32,119 @@
   </header>
 
   <main>
-    <div class="container">
+    <div class="container" style="padding-top:20px;padding-bottom:60px">
+      <!-- Хлебные крошки -->
       <nav class="breadcrumbs">
         <a href="index.html">Главная</a> <span>/</span> <span>О нас</span>
       </nav>
 
-      <!-- Hero -->
-      <section class="course-hero">
-        <h1 class="course-hero__title">О платформе EduVerse</h1>
-        <p class="text-muted">
-          EduVerse — это платформа онлайн-обучения, которая открывает знания всему миру.
-          Мы соединяем лучших преподавателей и мотивированных студентов.
+      <!-- Hero секция О нас -->
+      <section class="course-hero" style="background:linear-gradient(135deg, #eef2ff, #f8fafc);border-radius:20px;padding:48px 36px;margin-bottom:40px">
+        <span class="badge badge--primary" style="margin-bottom:12px;display:inline-block">Миссия EduVerse</span>
+        <h1 class="course-hero__title" style="font-size:36px;margin-bottom:14px">Открываем знания всему миру</h1>
+        <p class="text-muted" style="font-size:18px;line-height:1.6;max-width:800px">
+          EduVerse — это передовая экосистема онлайн-образования, объединяющая практикующих экспертов индустрии и миллионы студентов, стремящихся к освоению востребованных цифровых профессий.
         </p>
       </section>
 
-      <!-- Миссия и ценности -->
-      <section class="section">
-        <h2 class="section__title">Наша миссия и ценности</h2>
+      <!-- Миссия, видение и ключевые ценности -->
+      <section class="section" style="padding-top:0">
+        <h2 class="section__title">Наша миссия, видение и ценности</h2>
         <div class="about-grid">
           <div class="value-card">
-            <div class="value-card__icon"></div>
-            <h3 class="value-card__title">Миссия</h3>
-            <p class="value-card__text">Сделать качественное образование доступным каждому человеку в любой точке мира.</p>
+            <div class="value-card__icon" style="font-size:28px">🎯</div>
+            <h3 class="value-card__title">Наша миссия</h3>
+            <p class="value-card__text">Демократизировать доступ к первоклассному практическому образованию, уничтожая географические и финансовые барьеры.</p>
           </div>
           <div class="value-card">
-            <div class="value-card__icon"></div>
-            <h3 class="value-card__title">Доступность</h3>
-            <p class="value-card__text">Мы верим, что знания не должны иметь границ и барьеров.</p>
+            <div class="value-card__icon" style="font-size:28px">🔭</div>
+            <h3 class="value-card__title">Наше видение</h3>
+            <p class="value-card__text">Стать глобальным эталоном прикладного обучения, где каждый ученик получает реальные навыки и уверенность в будущем.</p>
           </div>
           <div class="value-card">
-            <div class="value-card__icon"></div>
-            <h3 class="value-card__title">Инновации</h3>
-            <p class="value-card__text">Постоянно улучшаем платформу и методы обучения.</p>
+            <div class="value-card__icon" style="font-size:28px">💡</div>
+            <h3 class="value-card__title">Практическая польза</h3>
+            <p class="value-card__text">Мы отвергаем сухую теорию. 80% времени студент решает практические кейсы, пишет код и создает проекты в портфолио.</p>
           </div>
           <div class="value-card">
-            <div class="value-card__icon"></div>
-            <h3 class="value-card__title">Сообщество</h3>
-            <p class="value-card__text">Строим среду, где студенты и преподаватели растут вместе.</p>
+            <div class="value-card__icon" style="font-size:28px">🤝</div>
+            <h3 class="value-card__title">Менторство и забота</h3>
+            <p class="value-card__text">Каждый студент имеет прямую связь с автором курса, получая детальные ответы и персональные рекомендации.</p>
           </div>
         </div>
       </section>
 
-      <!-- История -->
-      <section class="section section--soft">
-        <div class="container">
-          <h2 class="section__title">История создания</h2>
-          <p class="text-muted mb-20">
-            EduVerse был основан в 2020 году командой энтузиастов, которые хотели изменить подход к онлайн-обучению.
-            За несколько лет платформа выросла в международное сообщество студентов и преподавателей.
-          </p>
+      <!-- История создания платформы -->
+      <section class="section section--soft" style="border-radius:20px;padding:48px 36px;margin:30px 0">
+        <h2 class="section__title">История создания EduVerse</h2>
+        <div style="display:flex;flex-direction:column;gap:24px;max-width:860px">
+          <div style="display:flex;gap:18px;align-items:flex-start">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--color-primary);color:#fff;display:grid;place-items:center;font-weight:bold;flex-shrink:0">1</div>
+            <div>
+              <h3 style="font-size:18px;margin-bottom:6px">2023 год — Рождение идеи</h3>
+              <p class="text-muted" style="line-height:1.6">Группа разработчиков и методистов осознала, что классические курсы перегружены устаревшей теорией. Было решено создать платформу со встроенным интерактивным редактором кода и акцентом на реальные проекты.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:18px;align-items:flex-start">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--color-primary);color:#fff;display:grid;place-items:center;font-weight:bold;flex-shrink:0">2</div>
+            <div>
+              <h3 style="font-size:18px;margin-bottom:6px">2024 год — Запуск первой линейки курсов</h3>
+              <p class="text-muted" style="line-height:1.6">Запуск курсов по JavaScript, UI/UX дизайну и маркетингу. Первые 5 000 выпускников получили официальные сертификаты и трудоустроились в технологические компании.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:18px;align-items:flex-start">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--color-primary);color:#fff;display:grid;place-items:center;font-weight:bold;flex-shrink:0">3</div>
+            <div>
+              <h3 style="font-size:18px;margin-bottom:6px">2025–2026 годы — Масштабирование EduVerse</h3>
+              <p class="text-muted" style="line-height:1.6">Сегодня EduVerse объединяет десятки авторских курсов, активное сообщество студентов и преподавателей, непрерывно улучшая качество учебного процесса.</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- Команда -->
-      <section class="section">
+      <!-- Команда проекта (руководители, разработчики, методисты) -->
+      <section class="section" style="padding-top:20px">
         <h2 class="section__title">Команда проекта</h2>
-        <div class="teachers-grid">
-          <article class="teacher-card">
-            <img class="teacher-card__avatar" src="images/team-1.jpg" alt="Фото руководителя">
-            <h3 class="teacher-card__name">Анна Смирнова</h3>
-            <p class="teacher-card__spec">CEO и сооснователь</p>
-            <p class="teacher-card__text">Отвечает за стратегию и развитие платформы.</p>
-          </article>
-          <article class="teacher-card">
-            <img class="teacher-card__avatar" src="images/team-2.jpg" alt="Фото технического директора">
-            <h3 class="teacher-card__name">Игорь Петров</h3>
-            <p class="teacher-card__spec">CTO</p>
-            <p class="teacher-card__text">Руководит разработкой и инфраструктурой.</p>
-          </article>
-          <article class="teacher-card">
-            <img class="teacher-card__avatar" src="images/team-3.jpg" alt="Фото методиста">
-            <h3 class="teacher-card__name">Мария Иванова</h3>
-            <p class="teacher-card__spec">Главный методист</p>
-            <p class="teacher-card__text">Отвечает за качество учебных программ.</p>
-          </article>
-          <article class="teacher-card">
-            <img class="teacher-card__avatar" src="images/team-4.jpg" alt="Фото дизайнера">
-            <h3 class="teacher-card__name">Елена Орлова</h3>
-            <p class="teacher-card__spec">Lead Designer</p>
-            <p class="teacher-card__text">Создаёт удобный и приятный интерфейс платформы.</p>
-          </article>
+        <div class="team-grid">
+          <div class="team-card">
+            <img class="team-card__avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Алексей Волков">
+            <h3 class="team-card__name">Алексей Волков</h3>
+            <p class="team-card__role">Основатель & CEO</p>
+            <p class="team-card__desc">12 лет в сфере цифрового образования. Отвечает за стратегию и стандарты качества обучения.</p>
+          </div>
+          <div class="team-card">
+            <img class="team-card__avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Анна Смирнова">
+            <h3 class="team-card__name">Анна Смирнова</h3>
+            <p class="team-card__role">Руководитель разработки (CTO)</p>
+            <p class="team-card__desc">Эксперт по архитектуре веб-систем. Автор интерактивного движка выполнения кода EduVerse.</p>
+          </div>
+          <div class="team-card">
+            <img class="team-card__avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" alt="Мария Соколова">
+            <h3 class="team-card__name">Мария Соколова</h3>
+            <p class="team-card__role">Главный методист программ</p>
+            <p class="team-card__desc">Кандидат педагогических наук. Разрабатывает структуру модулей и систему проверки знаний.</p>
+          </div>
+          <div class="team-card">
+            <img class="team-card__avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Игорь Петров">
+            <h3 class="team-card__name">Игорь Петров</h3>
+            <p class="team-card__role">Арт-директор & Head of Design</p>
+            <p class="team-card__desc">Проектирует пользовательский опыт образовательного плеера и дизайн-систему EduVerse.</p>
+          </div>
         </div>
       </section>
     </div>
   </main>
 
+  <!-- Подвал сайта -->
   <footer class="footer" id="contacts">
     <div class="container">
       <div class="footer__grid">
         <div>
-          <a href="index.html" class="logo" style="color:#fff"><span class="logo__mark">E</span><span>EduVerse</span></a>
-          <p class="mt-20" style="font-size:14px;color:#9ca3af">Открываем знания всему миру.</p>
+          <a href="index.html" class="logo logo--footer">EduVerse</a>
+          <p class="footer__text">Платформа онлайн-обучения нового поколения.</p>
         </div>
         <div>
-          <h4 class="footer__title">Платформа</h4>
+          <h4 class="footer__title">Навигация</h4>
           <ul class="footer__list">
             <li><a href="catalog.html">Каталог курсов</a></li>
             <li><a href="teachers.html">Преподаватели</a></li>
@@ -133,22 +153,14 @@
           </ul>
         </div>
         <div>
-          <h4 class="footer__title">Студентам</h4>
-          <ul class="footer__list">
-            <li><a href="my-courses.html">Мои курсы</a></li>
-            <li><a href="auth.html">Вход / Регистрация</a></li>
-          </ul>
-        </div>
-        <div>
           <h4 class="footer__title">Контакты</h4>
           <ul class="footer__list">
             <li><a href="mailto:info@eduverse.ru">info@eduverse.ru</a></li>
             <li><a href="tel:+78001234567">+7 (800) 123-45-67</a></li>
-            <li><a href="#">Москва, ул. Примерная, 1</a></li>
           </ul>
         </div>
       </div>
-      <div class="footer__bottom">© 2025 EduVerse. Все права защищены.</div>
+      <div class="footer__bottom">© 2026 EduVerse. Открываем знания всему миру. Все права защищены.</div>
     </div>
   </footer>
 

@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Админ-панель платформы EduVerse.">
+  <meta name="description" content="Админ-панель платформы EduVerse: управление пользователями, курсами, категориями, блогом и общая статистика платформы.">
   <title>Админ-панель — EduVerse</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+  <!-- Шапка сайта -->
   <header class="header">
     <div class="container header__inner">
-      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
+      <a href="index.html" class="logo">EduVerse</a>
       <nav class="nav" id="nav">
         <ul class="nav__list">
           <li><a href="admin.html" class="nav__link nav__link--active">Админ-панель</a></li>
@@ -21,154 +22,491 @@
         </ul>
       </nav>
       <div class="header__actions">
-        <a href="auth.html" class="btn btn--ghost btn--sm">Выйти</a>
+        <a href="admin.html" class="btn btn--primary btn--sm">Админ-панель</a>
         <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
 
   <main>
-    <div class="container" style="padding-top:30px">
-      <h1 class="section__title">Админ-панель</h1>
+    <div class="container" style="padding-top:30px;padding-bottom:60px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:16px">
+        <div>
+          <h1 class="section__title" style="margin-bottom:6px">Административная панель</h1>
+          <p class="text-muted">Централизованный контроль платформы EduVerse: пользователи, контент и статистика</p>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button class="btn btn--primary btn--sm" onclick="openCreateBlogModal()">+ Опубликовать статью в блог</button>
+          <button class="btn btn--outline btn--sm" onclick="openCreateCategoryModal()">+ Категория</button>
+        </div>
+      </div>
 
       <div class="dashboard">
-        <!-- Боковое меню -->
+        <!-- Боковое меню админки -->
         <aside class="sidebar">
-          <a href="admin.html" class="sidebar__link sidebar__link--active">Обзор</a>
-          <a href="#" class="sidebar__link">Пользователи</a>
-          <a href="#" class="sidebar__link">Курсы</a>
-          <a href="#" class="sidebar__link">Категории</a>
-          <a href="#" class="sidebar__link">Блог</a>
+          <a href="javascript:void(0)" onclick="switchAdminTab('overview')" id="tab-overview-link" class="sidebar__link sidebar__link--active">📊 Обзор и статистика</a>
+          <a href="javascript:void(0)" onclick="switchAdminTab('users')" id="tab-users-link" class="sidebar__link">👥 Пользователи (<span id="menu-users-count">0</span>)</a>
+          <a href="javascript:void(0)" onclick="switchAdminTab('courses')" id="tab-courses-link" class="sidebar__link">📚 Все курсы (<span id="menu-courses-count">0</span>)</a>
+          <a href="javascript:void(0)" onclick="switchAdminTab('categories')" id="tab-categories-link" class="sidebar__link">🏷️ Категории (<span id="menu-categories-count">0</span>)</a>
+          <a href="javascript:void(0)" onclick="switchAdminTab('blog')" id="tab-blog-link" class="sidebar__link">📰 Блог платформы</a>
         </aside>
 
-        <!-- Контент -->
+        <!-- Контент админки -->
         <div>
-          <!-- Общая статистика -->
-          <div class="stats">
+          <!-- Статистические показатели платформы -->
+          <div class="stats mb-20" style="margin-bottom:28px">
             <div class="stat-card">
-              <div class="stat-card__label">Активных пользователей</div>
-              <div class="stat-card__value">12 480</div>
+              <div class="stat-card__label">Пользователей</div>
+              <div class="stat-card__value" id="stat-total-users">0</div>
             </div>
             <div class="stat-card">
               <div class="stat-card__label">Преподавателей</div>
-              <div class="stat-card__value">184</div>
+              <div class="stat-card__value" id="stat-total-teachers">0</div>
             </div>
             <div class="stat-card">
-              <div class="stat-card__label">Продаж</div>
-              <div class="stat-card__value">3 216</div>
+              <div class="stat-card__label">Продаж (заказов)</div>
+              <div class="stat-card__value" id="stat-total-orders">0</div>
             </div>
             <div class="stat-card">
               <div class="stat-card__label">Общий доход</div>
-              <div class="stat-card__value">8 420 000 ₽</div>
+              <div class="stat-card__value" id="stat-total-revenue" style="color:var(--color-success)">0 ₽</div>
             </div>
           </div>
 
-          <!-- Управление пользователями -->
-          <h2 class="section__title" style="font-size:22px">Пользователи</h2>
-          <div class="table-wrap mb-20">
-            <table class="table">
-              <thead>
-                <tr><th>ID</th><th>ФИО</th><th>Email</th><th>Роль</th><th>Статус</th><th>Действия</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1024</td><td>Анна Смирнова</td><td>anna@eduverse.ru</td>
-                  <td><span class="badge badge--info">Преподаватель</span></td>
-                  <td><span class="badge badge--success">Активен</span></td>
-                  <td>
-                    <a href="#" class="btn btn--outline btn--sm">Изменить роль</a>
-                    <a href="#" class="btn btn--outline btn--sm">Блокировать</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1025</td><td>Алексей Кузнецов</td><td>alex@eduverse.ru</td>
-                  <td><span class="badge badge--success">Студент</span></td>
-                  <td><span class="badge badge--success">Активен</span></td>
-                  <td>
-                    <a href="#" class="btn btn--outline btn--sm">Изменить роль</a>
-                    <a href="#" class="btn btn--outline btn--sm">Блокировать</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1026</td><td>Игорь Петров</td><td>igor@eduverse.ru</td>
-                  <td><span class="badge badge--success">Студент</span></td>
-                  <td><span class="badge badge--danger">Заблокирован</span></td>
-                  <td>
-                    <a href="#" class="btn btn--outline btn--sm">Изменить роль</a>
-                    <a href="#" class="btn btn--outline btn--sm">Разблокировать</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Управление курсами -->
-          <h2 class="section__title" style="font-size:22px">Курсы</h2>
-          <div class="table-wrap mb-20">
-            <table class="table">
-              <thead>
-                <tr><th>Курс</th><th>Автор</th><th>Категория</th><th>Цена</th><th>Действия</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>JavaScript с нуля до PRO</td><td>Анна Смирнова</td><td>Программирование</td><td>4 990 ₽</td>
-                  <td>
-                    <a href="#" class="btn btn--outline btn--sm">Ред.</a>
-                    <a href="#" class="btn btn--outline btn--sm">Удалить</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>UI/UX дизайн в Figma</td><td>Игорь Петров</td><td>Дизайн</td><td>3 990 ₽</td>
-                  <td>
-                    <a href="#" class="btn btn--outline btn--sm">Ред.</a>
-                    <a href="#" class="btn btn--outline btn--sm">Удалить</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Категории -->
-          <h2 class="section__title" style="font-size:22px">Категории</h2>
-          <form class="mb-20" onsubmit="return false;" style="display:flex;gap:12px;flex-wrap:wrap">
-            <input class="form__input" style="max-width:280px" type="text" placeholder="Новая категория">
-            <button type="submit" class="btn btn--primary">Добавить</button>
-          </form>
-          <div class="table-wrap mb-20">
-            <table class="table">
-              <thead><tr><th>Категория</th><th>Курсов</th><th>Действия</th></tr></thead>
-              <tbody>
-                <tr><td>Программирование</td><td>142</td><td><a href="#" class="btn btn--outline btn--sm">Ред.</a> <a href="#" class="btn btn--outline btn--sm">Удалить</a></td></tr>
-                <tr><td>Дизайн</td><td>86</td><td><a href="#" class="btn btn--outline btn--sm">Ред.</a> <a href="#" class="btn btn--outline btn--sm">Удалить</a></td></tr>
-                <tr><td>Маркетинг</td><td>54</td><td><a href="#" class="btn btn--outline btn--sm">Ред.</a> <a href="#" class="btn btn--outline btn--sm">Удалить</a></td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Блог -->
-          <h2 class="section__title" style="font-size:22px">Управление блогом</h2>
-          <form onsubmit="return false;">
-            <div class="form__group">
-              <label class="form__label" for="post-title">Заголовок статьи</label>
-              <input class="form__input" type="text" id="post-title" placeholder="Например, 10 навыков будущего">
+          <!-- ===== 1. ВКЛАДКА ОБЗОРА ===== -->
+          <div id="admin-sec-overview">
+            <h2 class="section__title" style="font-size:20px;margin-bottom:14px">Сводка платформы</h2>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:20px;margin-bottom:30px">
+              <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px">
+                <h3 style="font-size:16px;margin-bottom:8px">🎓 Контент</h3>
+                <p class="text-muted" id="overview-content-summary">Курсов в каталоге: 0</p>
+                <button class="btn btn--outline btn--sm mt-20" onclick="switchAdminTab('courses')">Перейти к курсам →</button>
+              </div>
+              <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px">
+                <h3 style="font-size:16px;margin-bottom:8px">👥 Пользователи</h3>
+                <p class="text-muted" id="overview-users-summary">Студентов: 0 · Преподавателей: 0</p>
+                <button class="btn btn--outline btn--sm mt-20" onclick="switchAdminTab('users')">Управление ролями →</button>
+              </div>
             </div>
-            <div class="form__group">
-              <label class="form__label" for="post-text">Текст статьи</label>
-              <textarea class="form__textarea" id="post-text" placeholder="Текст статьи..."></textarea>
+          </div>
+
+          <!-- ===== 2. ВКЛАДКА ПОЛЬЗОВАТЕЛЕЙ ===== -->
+          <div id="admin-sec-users" style="display:none">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+              <h2 class="section__title" style="font-size:20px;margin-bottom:0">Управление пользователями</h2>
+              <span class="text-muted" style="font-size:13px">Блокировка и смена ролей сохраняются в БД</span>
             </div>
-            <button type="submit" class="btn btn--primary">Опубликовать</button>
-          </form>
+
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>ФИО</th>
+                    <th>Email</th>
+                    <th>Роль</th>
+                    <th>Статус</th>
+                    <th>Действия</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-users-table-body">
+                  <!-- Заполняется через JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ===== 3. ВКЛАДКА КУРСОВ ===== -->
+          <div id="admin-sec-courses" style="display:none">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+              <h2 class="section__title" style="font-size:20px;margin-bottom:0">Все курсы на платформе</h2>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Название</th>
+                    <th>Категория</th>
+                    <th>Автор</th>
+                    <th>Цена</th>
+                    <th>Рейтинг</th>
+                    <th>Действия</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-courses-table-body">
+                  <!-- Заполняется через JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ===== 4. ВКЛАДКА КАТЕГОРИЙ ===== -->
+          <div id="admin-sec-categories" style="display:none">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+              <h2 class="section__title" style="font-size:20px;margin-bottom:0">Категории курсов</h2>
+              <button class="btn btn--outline btn--sm" onclick="openCreateCategoryModal()">+ Новая категория</button>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Иконка</th>
+                    <th>Название</th>
+                    <th>Slug</th>
+                    <th>Курсов</th>
+                    <th>Действия</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-categories-table-body">
+                  <!-- Заполняется через JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ===== 5. ВКЛАДКА БЛОГА ===== -->
+          <div id="admin-sec-blog" style="display:none">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+              <h2 class="section__title" style="font-size:20px;margin-bottom:0">Статьи в блоге</h2>
+              <button class="btn btn--primary btn--sm" onclick="openCreateBlogModal()">+ Создать статью</button>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Заголовок</th>
+                    <th>Категория</th>
+                    <th>Автор</th>
+                    <th>Дата</th>
+                    <th>Действия</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-blog-table-body">
+                  <!-- Заполняется через JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </main>
 
+  <!-- Подвал сайта -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__bottom" style="border:none;padding-top:0">© 2025 EduVerse. Все права защищены.</div>
+      <div class="footer__bottom">© 2026 EduVerse. Панель супер-администратора. Все права защищены.</div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    let adminData = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Проверка прав администратора
+      if (!EduVerse.currentUser || EduVerse.currentUser.role !== 'admin') {
+        document.querySelector('main .container').innerHTML = `
+          <div style="background:#f8fafc;border:1px dashed #cbd5e1;border-radius:16px;padding:50px 20px;text-align:center;max-width:600px;margin:40px auto">
+            <h3>Доступ ограничен</h3>
+            <p class="text-muted mt-20">Этот раздел доступен только администраторам платформы.</p>
+            <div style="display:flex;gap:12px;justify-content:center;margin-top:20px">
+              <a href="auth.html" class="btn btn--primary">Авторизоваться</a>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      await loadAdminDashboard();
+    });
+
+    async function loadAdminDashboard() {
+      try {
+        adminData = await EduVerse.api('/api/admin/dashboard');
+
+        // Статистика
+        document.getElementById('stat-total-users').textContent = adminData.stats.totalUsers;
+        document.getElementById('stat-total-teachers').textContent = adminData.stats.totalTeachers;
+        document.getElementById('stat-total-orders').textContent = adminData.stats.totalOrders;
+        document.getElementById('stat-total-revenue').textContent = adminData.stats.totalRevenue.toLocaleString('ru-RU') + ' ₽';
+
+        // Меню счетчики
+        document.getElementById('menu-users-count').textContent = adminData.users.length;
+        document.getElementById('menu-courses-count').textContent = adminData.courses.length;
+        document.getElementById('menu-categories-count').textContent = adminData.categories.length;
+
+        // Сводка
+        document.getElementById('overview-content-summary').textContent = `Курсов в каталоге: ${adminData.courses.length} · Категорий: ${adminData.categories.length} · Статей блога: ${adminData.blogPosts.length}`;
+        document.getElementById('overview-users-summary').textContent = `Студентов: ${adminData.stats.totalStudents} · Преподавателей: ${adminData.stats.totalTeachers} · Всего: ${adminData.stats.totalUsers}`;
+
+        // Таблицы
+        renderUsersTable(adminData.users);
+        renderCoursesTable(adminData.courses);
+        renderCategoriesTable(adminData.categories);
+        renderBlogTable(adminData.blogPosts);
+
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    function renderUsersTable(users) {
+      const tbody = document.getElementById('admin-users-table-body');
+      tbody.innerHTML = users.map(u => {
+        const isBlocked = u.is_blocked === 1;
+        const badgeStatus = isBlocked ? '<span class="badge badge--danger">Заблокирован</span>' : '<span class="badge badge--success">Активен</span>';
+
+        return `
+          <tr>
+            <td>#${u.id}</td>
+            <td><strong>${u.full_name}</strong></td>
+            <td>${u.email}</td>
+            <td>
+              <select onchange="changeUserRole(${u.id}, this.value)" style="padding:4px 8px;border-radius:6px;border:1px solid #cbd5e1;font-size:13px">
+                <option value="student" ${u.role === 'student' ? 'selected' : ''}>Студент</option>
+                <option value="teacher" ${u.role === 'teacher' ? 'selected' : ''}>Преподаватель</option>
+                <option value="admin" ${u.role === 'admin' ? 'selected' : ''}>Администратор</option>
+              </select>
+            </td>
+            <td>${badgeStatus}</td>
+            <td>
+              <button class="btn btn--sm ${isBlocked ? 'btn--outline' : 'btn--ghost'}" style="${isBlocked ? '' : 'color:var(--color-danger)'}" onclick="toggleUserBlock(${u.id})">
+                ${isBlocked ? 'Разблокировать' : 'Заблокировать'}
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderCoursesTable(courses) {
+      const tbody = document.getElementById('admin-courses-table-body');
+      tbody.innerHTML = courses.map(c => `
+        <tr>
+          <td>
+            <strong><a href="course.html?id=${c.id}" style="color:inherit;text-decoration:none">${c.title}</a></strong>
+          </td>
+          <td><span class="badge badge--primary">${c.category_name || '—'}</span></td>
+          <td>${c.teacher_name || 'Эксперт'}</td>
+          <td>${c.is_free ? 'Бесплатно' : `${c.price.toLocaleString('ru-RU')} ₽`}</td>
+          <td>★ ${c.rating}</td>
+          <td>
+            <button class="btn btn--ghost btn--sm" style="color:var(--color-danger)" onclick="deleteAdminCourse(${c.id})">Удалить</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderCategoriesTable(categories) {
+      const tbody = document.getElementById('admin-categories-table-body');
+      tbody.innerHTML = categories.map(cat => `
+        <tr>
+          <td style="font-size:22px">${cat.icon || '📚'}</td>
+          <td><strong>${cat.name}</strong></td>
+          <td><code>${cat.slug}</code></td>
+          <td>${cat.courses_count || 0}</td>
+          <td>
+            <button class="btn btn--ghost btn--sm" style="color:var(--color-danger)" onclick="deleteCategory(${cat.id})">Удалить</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderBlogTable(posts) {
+      const tbody = document.getElementById('admin-blog-table-body');
+      tbody.innerHTML = posts.map(p => `
+        <tr>
+          <td><strong><a href="blog.html?id=${p.id}" style="color:inherit;text-decoration:none">${p.title}</a></strong></td>
+          <td><span class="badge badge--warning">${p.category}</span></td>
+          <td>${p.author_name || 'Редакция'}</td>
+          <td>${new Date(p.created_at).toLocaleDateString('ru-RU')}</td>
+          <td>
+            <button class="btn btn--ghost btn--sm" style="color:var(--color-danger)" onclick="deleteBlogPost(${p.id})">Удалить</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    async function toggleUserBlock(userId) {
+      try {
+        const res = await EduVerse.api(`/api/admin/users/${userId}/toggle-block`, { method: 'POST' });
+        EduVerse.showToast(res.message, 'info');
+        await loadAdminDashboard();
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    async function changeUserRole(userId, newRole) {
+      try {
+        const res = await EduVerse.api(`/api/admin/users/${userId}/role`, {
+          method: 'POST',
+          body: { role: newRole }
+        });
+        EduVerse.showToast(res.message, 'success');
+        await loadAdminDashboard();
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    async function deleteAdminCourse(courseId) {
+      if (!confirm('Вы точно хотите удалить этот курс со всеми уроками и отзывами?')) return;
+      try {
+        const res = await EduVerse.api(`/api/teacher/courses/${courseId}`, { method: 'DELETE' });
+        EduVerse.showToast(res.message, 'success');
+        await loadAdminDashboard();
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    async function deleteCategory(catId) {
+      if (!confirm('Удалить эту категорию?')) return;
+      try {
+        const res = await EduVerse.api(`/api/admin/categories/${catId}`, { method: 'DELETE' });
+        EduVerse.showToast(res.message, 'success');
+        await loadAdminDashboard();
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    async function deleteBlogPost(postId) {
+      if (!confirm('Удалить эту статью из блога?')) return;
+      try {
+        const res = await EduVerse.api(`/api/admin/blog/${postId}`, { method: 'DELETE' });
+        EduVerse.showToast(res.message, 'success');
+        await loadAdminDashboard();
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    function switchAdminTab(tab) {
+      const tabs = ['overview', 'users', 'courses', 'categories', 'blog'];
+      tabs.forEach(t => {
+        const sec = document.getElementById(`admin-sec-${t}`);
+        const link = document.getElementById(`tab-${t}-link`);
+        if (sec) sec.style.display = t === tab ? 'block' : 'none';
+        if (link) link.classList.toggle('sidebar__link--active', t === tab);
+      });
+    }
+
+    function openCreateCategoryModal() {
+      const html = `
+        <h2 style="font-size:22px;margin-bottom:12px">Добавить новую категорию</h2>
+        <form onsubmit="handleCreateCategory(event)">
+          <div class="form__group">
+            <label class="form__label">Название категории</label>
+            <input class="form__input" type="text" id="cat-name-input" placeholder="Например: Искусственный интеллект" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label">Slug (идентификатор латиницей)</label>
+            <input class="form__input" type="text" id="cat-slug-input" placeholder="ai-data" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label">Иконка (эмодзи)</label>
+            <input class="form__input" type="text" id="cat-icon-input" value="🤖" placeholder="🤖" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label">Описание категории</label>
+            <input class="form__input" type="text" id="cat-desc-input" placeholder="Курсы по машинному обучению и нейросетям">
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Создать категорию</button>
+        </form>
+      `;
+      EduVerse.openModal(html);
+    }
+
+    async function handleCreateCategory(e) {
+      e.preventDefault();
+      try {
+        const body = {
+          name: document.getElementById('cat-name-input').value.trim(),
+          slug: document.getElementById('cat-slug-input').value.trim(),
+          icon: document.getElementById('cat-icon-input').value.trim(),
+          description: document.getElementById('cat-desc-input').value.trim()
+        };
+
+        const res = await EduVerse.api('/api/admin/categories', {
+          method: 'POST',
+          body
+        });
+
+        EduVerse.closeModal();
+        EduVerse.showToast(res.message, 'success');
+        await loadAdminDashboard();
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    function openCreateBlogModal() {
+      const html = `
+        <h2 style="font-size:22px;margin-bottom:12px">Опубликовать новую статью в блог</h2>
+        <form onsubmit="handleCreateBlog(event)">
+          <div class="form__group">
+            <label class="form__label">Заголовок статьи</label>
+            <input class="form__input" type="text" id="blog-title-input" placeholder="Как стать востребованным разработчиком в 2026 году" required>
+          </div>
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label">Тематика</label>
+              <select class="form__input" id="blog-cat-input">
+                <option value="Образование">Образование</option>
+                <option value="Карьера">Карьера</option>
+                <option value="Технологии">Технологии</option>
+                <option value="Саморазвитие">Саморазвитие</option>
+              </select>
+            </div>
+            <div class="form__group">
+              <label class="form__label">Ссылка на обложку</label>
+              <input class="form__input" type="url" id="blog-img-input" value="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80">
+            </div>
+          </div>
+          <div class="form__group">
+            <label class="form__label">Краткий анонс</label>
+            <input class="form__input" type="text" id="blog-summary-input" placeholder="Краткое содержание для ленты блога..." required>
+          </div>
+          <div class="form__group">
+            <label class="form__label">Полный текст статьи</label>
+            <textarea class="form__input" id="blog-content-input" rows="5" placeholder="Текст образовательной статьи..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Опубликовать статью</button>
+        </form>
+      `;
+      EduVerse.openModal(html);
+    }
+
+    async function handleCreateBlog(e) {
+      e.preventDefault();
+      try {
+        const body = {
+          title: document.getElementById('blog-title-input').value.trim(),
+          category: document.getElementById('blog-cat-input').value,
+          image: document.getElementById('blog-img-input').value.trim(),
+          summary: document.getElementById('blog-summary-input').value.trim(),
+          content: document.getElementById('blog-content-input').value.trim()
+        };
+
+        const res = await EduVerse.api('/api/admin/blog', {
+          method: 'POST',
+          body
+        });
+
+        EduVerse.closeModal();
+        EduVerse.showToast(res.message, 'success');
+        await loadAdminDashboard();
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+  </script>
 </body>
 </html>

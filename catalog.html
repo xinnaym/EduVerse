@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Каталог курсов EduVerse: поиск, фильтры, сортировка.">
+  <meta name="description" content="Каталог курсов EduVerse: интерактивный поиск, фильтры по категориям, уровню сложности и ценам, сортировка и пагинация.">
   <title>Каталог курсов — EduVerse</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+  <!-- Шапка сайта -->
   <header class="header">
     <div class="container header__inner">
-      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
-      <nav class="nav" id="nav">
+      <a href="index.html" class="logo">EduVerse</a>
+      <nav class="nav" id="nav" aria-label="Основная навигация">
         <ul class="nav__list">
           <li><a href="catalog.html" class="nav__link nav__link--active">Каталог курсов</a></li>
           <li><a href="about.html" class="nav__link">О нас</a></li>
@@ -31,146 +32,109 @@
   </header>
 
   <main>
-    <div class="container">
+    <div class="container" style="padding-top:20px;padding-bottom:60px">
       <!-- Хлебные крошки -->
       <nav class="breadcrumbs">
         <a href="index.html">Главная</a> <span>/</span> <span>Каталог курсов</span>
       </nav>
 
-      <h1 class="section__title">Каталог курсов</h1>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+        <div>
+          <h1 class="section__title" style="margin-bottom:6px">Каталог курсов</h1>
+          <p class="text-muted" id="courses-count-label">Показаны лучшие программы от ведущих экспертов</p>
+        </div>
+        <button id="reset-filters-btn" class="btn btn--outline btn--sm" style="display:none" onclick="resetFilters()">Сбросить фильтры ✕</button>
+      </div>
 
       <div class="catalog">
-        <!-- ===== Фильтры ===== -->
-        <aside class="filters">
+        <!-- ===== Блок интерактивных фильтров ===== -->
+        <aside class="filters" aria-label="Фильтры курсов">
+          <!-- Фильтр по категориям -->
           <div class="filters__group">
             <h3 class="filters__title">Категория</h3>
-            <label class="filters__label"><input type="checkbox"> Программирование</label>
-            <label class="filters__label"><input type="checkbox"> Дизайн</label>
-            <label class="filters__label"><input type="checkbox"> Маркетинг</label>
-            <label class="filters__label"><input type="checkbox"> Языки</label>
-            <label class="filters__label"><input type="checkbox"> Личностный рост</label>
+            <div id="categories-filter-list">
+              <label class="filters__label"><input type="checkbox" name="cat" value="programming"> Программирование</label>
+              <label class="filters__label"><input type="checkbox" name="cat" value="design"> Дизайн</label>
+              <label class="filters__label"><input type="checkbox" name="cat" value="marketing"> Маркетинг</label>
+              <label class="filters__label"><input type="checkbox" name="cat" value="languages"> Языки</label>
+              <label class="filters__label"><input type="checkbox" name="cat" value="soft-skills"> Личностный рост</label>
+            </div>
           </div>
 
+          <!-- Фильтр по уровню сложности -->
           <div class="filters__group">
             <h3 class="filters__title">Уровень сложности</h3>
-            <label class="filters__label"><input type="radio" name="level"> Начальный</label>
-            <label class="filters__label"><input type="radio" name="level"> Средний</label>
-            <label class="filters__label"><input type="radio" name="level"> Продвинутый</label>
+            <label class="filters__label"><input type="radio" name="level" value="" checked> Все уровни</label>
+            <label class="filters__label"><input type="radio" name="level" value="начальный"> Начальный</label>
+            <label class="filters__label"><input type="radio" name="level" value="средний"> Средний</label>
+            <label class="filters__label"><input type="radio" name="level" value="продвинутый"> Продвинутый</label>
           </div>
 
+          <!-- Фильтр по цене -->
           <div class="filters__group">
-            <h3 class="filters__title">Цена</h3>
-            <label class="filters__label"><input type="checkbox"> Бесплатные</label>
-            <label class="filters__label"><input type="checkbox"> Платные</label>
+            <h3 class="filters__title">Стоимость</h3>
+            <label class="filters__label"><input type="radio" name="price" value="" checked> Все курсы</label>
+            <label class="filters__label"><input type="radio" name="price" value="free"> Бесплатные</label>
+            <label class="filters__label"><input type="radio" name="price" value="paid"> Платные</label>
           </div>
 
+          <!-- Фильтр по рейтингу -->
           <div class="filters__group">
-            <h3 class="filters__title">Рейтинг</h3>
-            <label class="filters__label"><input type="radio" name="rating"> 4.5 и выше</label>
-            <label class="filters__label"><input type="radio" name="rating"> 4.0 и выше</label>
-            <label class="filters__label"><input type="radio" name="rating"> 3.0 и выше</label>
+            <h3 class="filters__title">Рейтинг курса</h3>
+            <label class="filters__label"><input type="radio" name="rating" value="" checked> Любой рейтинг</label>
+            <label class="filters__label"><input type="radio" name="rating" value="4.8"> ★ 4.8 и выше</label>
+            <label class="filters__label"><input type="radio" name="rating" value="4.5"> ★ 4.5 и выше</label>
+            <label class="filters__label"><input type="radio" name="rating" value="4.0"> ★ 4.0 и выше</label>
           </div>
         </aside>
 
-        <!-- ===== Результаты ===== -->
+        <!-- ===== Результаты поиска и курсы ===== -->
         <div>
+          <!-- Поисковая панель и сортировка -->
           <div class="catalog__top">
-            <form class="search" onsubmit="return false;">
-              <input type="search" class="search__input" placeholder="Поиск по названию, преподавателю...">
+            <form class="search" id="search-form" onsubmit="event.preventDefault(); applyFilters(1);">
+              <input type="search" id="search-input" class="search__input" placeholder="Поиск по названию, преподавателю...">
               <button type="submit" class="btn btn--primary">Найти</button>
             </form>
-            <select class="select" aria-label="Сортировка">
-              <option>По популярности</option>
-              <option>По новизне</option>
-              <option>Цена: по возрастанию</option>
-              <option>Цена: по убыванию</option>
-              <option>По рейтингу</option>
-            </select>
+            
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:14px;color:var(--color-text-muted);white-space:nowrap">Сортировка:</span>
+              <select class="select" id="sort-select" aria-label="Сортировка" onchange="applyFilters(1)">
+                <option value="popular">По популярности</option>
+                <option value="newest">По новизне</option>
+                <option value="price_asc">Цена: по возрастанию</option>
+                <option value="price_desc">Цена: по убыванию</option>
+                <option value="rating">По рейтингу</option>
+              </select>
+            </div>
           </div>
 
-          <div class="courses-grid">
-            <article class="course-card">
-              <a href="course.html" class="course-card__image"><img src="images/course-1.jpg" alt="JavaScript с нуля"></a>
-              <div class="course-card__body">
-                <span class="course-card__category">Программирование</span>
-                <h3 class="course-card__title">JavaScript с нуля до PRO</h3>
-                <p class="course-card__author">Анна Смирнова</p>
-                <div class="course-card__meta"><span class="course-card__rating">★ 4.9</span><span class="course-card__price">4 990 ₽</span></div>
-              </div>
-            </article>
-
-            <article class="course-card">
-              <a href="course.html" class="course-card__image"><img src="images/course-2.jpg" alt="UI/UX дизайн"></a>
-              <div class="course-card__body">
-                <span class="course-card__category">Дизайн</span>
-                <h3 class="course-card__title">UI/UX дизайн в Figma</h3>
-                <p class="course-card__author">Игорь Петров</p>
-                <div class="course-card__meta"><span class="course-card__rating">★ 4.8</span><span class="course-card__price">3 990 ₽</span></div>
-              </div>
-            </article>
-
-            <article class="course-card">
-              <a href="course.html" class="course-card__image"><img src="images/course-3.jpg" alt="Интернет-маркетинг"></a>
-              <div class="course-card__body">
-                <span class="course-card__category">Маркетинг</span>
-                <h3 class="course-card__title">Интернет-маркетинг с нуля</h3>
-                <p class="course-card__author">Мария Иванова</p>
-                <div class="course-card__meta"><span class="course-card__rating">★ 4.7</span><span class="course-card__price">2 990 ₽</span></div>
-              </div>
-            </article>
-
-            <article class="course-card">
-              <a href="course.html" class="course-card__image"><img src="images/course-4.jpg" alt="Английский для IT"></a>
-              <div class="course-card__body">
-                <span class="course-card__category">Языки</span>
-                <h3 class="course-card__title">Английский для IT</h3>
-                <p class="course-card__author">Джон Смит</p>
-                <div class="course-card__meta"><span class="course-card__rating">★ 5.0</span><span class="course-card__price course-card__price--free">Бесплатно</span></div>
-              </div>
-            </article>
-
-            <article class="course-card">
-              <a href="course.html" class="course-card__image"><img src="images/course-5.jpg" alt="Python для анализа данных"></a>
-              <div class="course-card__body">
-                <span class="course-card__category">Программирование</span>
-                <h3 class="course-card__title">Python для анализа данных</h3>
-                <p class="course-card__author">Сергей Кузнецов</p>
-                <div class="course-card__meta"><span class="course-card__rating">★ 4.9</span><span class="course-card__price">5 490 ₽</span></div>
-              </div>
-            </article>
-
-            <article class="course-card">
-              <a href="course.html" class="course-card__image"><img src="images/course-6.jpg" alt="Личный бренд"></a>
-              <div class="course-card__body">
-                <span class="course-card__category">Личностный рост</span>
-                <h3 class="course-card__title">Личный бренд и карьера</h3>
-                <p class="course-card__author">Елена Орлова</p>
-                <div class="course-card__meta"><span class="course-card__rating">★ 4.6</span><span class="course-card__price">1 990 ₽</span></div>
-              </div>
-            </article>
+          <!-- Сетка курсов из базы данных -->
+          <div class="courses-grid" id="catalog-courses-grid">
+            <div style="grid-column:1/-1;text-align:center;padding:50px;color:var(--color-text-muted)">
+              Загрузка каталога курсов...
+            </div>
           </div>
 
           <!-- Пагинация -->
-          <nav class="pagination" aria-label="Пагинация">
-            <a href="#" class="pagination__item pagination__item--active">1</a>
-            <a href="#" class="pagination__item">2</a>
-            <a href="#" class="pagination__item">3</a>
-            <a href="#" class="pagination__item">→</a>
-          </nav>
+          <div class="pagination" id="catalog-pagination" style="margin-top:40px;display:flex;justify-content:center;gap:8px">
+            <!-- Кнопки пагинации генерируются через JS -->
+          </div>
         </div>
       </div>
     </div>
   </main>
 
+  <!-- Подвал сайта -->
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
         <div>
-          <a href="index.html" class="logo" style="color:#fff"><span class="logo__mark">E</span><span>EduVerse</span></a>
-          <p class="mt-20" style="font-size:14px;color:#9ca3af">Открываем знания всему миру.</p>
+          <a href="index.html" class="logo logo--footer">EduVerse</a>
+          <p class="footer__text">Платформа онлайн-обучения нового поколения.</p>
         </div>
         <div>
-          <h4 class="footer__title">Платформа</h4>
+          <h4 class="footer__title">Навигация</h4>
           <ul class="footer__list">
             <li><a href="catalog.html">Каталог курсов</a></li>
             <li><a href="teachers.html">Преподаватели</a></li>
@@ -183,8 +147,6 @@
           <ul class="footer__list">
             <li><a href="my-courses.html">Мои курсы</a></li>
             <li><a href="auth.html">Вход / Регистрация</a></li>
-            <li><a href="#">Сертификаты</a></li>
-            <li><a href="#">Помощь</a></li>
           </ul>
         </div>
         <div>
@@ -195,10 +157,172 @@
           </ul>
         </div>
       </div>
-      <div class="footer__bottom">© 2025 EduVerse. Все права защищены.</div>
+      <div class="footer__bottom">© 2026 EduVerse. Все права защищены.</div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    let currentPage = 1;
+    const PAGE_LIMIT = 6;
+
+    // Инициализация при загрузке страницы
+    document.addEventListener('DOMContentLoaded', () => {
+      // Парсим параметры URL (например, ?category=programming)
+      const params = new URLSearchParams(window.location.search);
+      const initialCat = params.get('category');
+      if (initialCat) {
+        const catBox = document.querySelector(`input[name="cat"][value="${initialCat}"]`);
+        if (catBox) catBox.checked = true;
+      }
+
+      const initialSearch = params.get('search');
+      if (initialSearch) {
+        document.getElementById('search-input').value = initialSearch;
+      }
+
+      // Привязка слушателей изменений к фильтрам
+      document.querySelectorAll('input[name="cat"], input[name="level"], input[name="price"], input[name="rating"]').forEach(input => {
+        input.addEventListener('change', () => applyFilters(1));
+      });
+
+      // Живой поиск с дебаунсом
+      let searchTimeout = null;
+      document.getElementById('search-input').addEventListener('input', () => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => applyFilters(1), 350);
+      });
+
+      applyFilters(1);
+    });
+
+    async function applyFilters(page = 1) {
+      currentPage = page;
+      const grid = document.getElementById('catalog-courses-grid');
+      const countLabel = document.getElementById('courses-count-label');
+      const resetBtn = document.getElementById('reset-filters-btn');
+
+      // Собираем выбранные категории
+      const selectedCats = Array.from(document.querySelectorAll('input[name="cat"]:checked')).map(cb => cb.value);
+      const level = document.querySelector('input[name="level"]:checked')?.value || '';
+      const price = document.querySelector('input[name="price"]:checked')?.value || '';
+      const rating = document.querySelector('input[name="rating"]:checked')?.value || '';
+      const search = document.getElementById('search-input').value.trim();
+      const sort = document.getElementById('sort-select').value;
+
+      // Показываем кнопку сброса если что-то выбрано
+      const hasFilters = selectedCats.length > 0 || level || price || rating || search;
+      resetBtn.style.display = hasFilters ? 'inline-flex' : 'none';
+
+      // Формируем query строку
+      const q = new URLSearchParams();
+      if (selectedCats.length > 0) q.set('category', selectedCats.join(','));
+      if (level) q.set('level', level);
+      if (price) q.set('price_type', price);
+      if (rating) q.set('min_rating', rating);
+      if (search) q.set('search', search);
+      q.set('sort', sort);
+      q.set('page', page);
+      q.set('limit', PAGE_LIMIT);
+
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--color-text-muted)">Поиск подходящих курсов...</div>';
+
+      try {
+        const data = await EduVerse.api(`/api/courses?${q.toString()}`);
+        countLabel.textContent = `Найдено курсов: ${data.total}`;
+
+        if (!data.courses || data.courses.length === 0) {
+          grid.innerHTML = `
+            <div style="grid-column:1/-1;text-align:center;padding:60px 20px;background:#f8fafc;border-radius:16px;border:1px dashed #cbd5e1">
+              <div style="font-size:40px;margin-bottom:12px">🔍</div>
+              <h3 style="font-size:20px;margin-bottom:8px">По вашему запросу ничего не найдено</h3>
+              <p class="text-muted" style="margin-bottom:20px">Попробуйте изменить параметры фильтрации или строку поиска</p>
+              <button class="btn btn--outline btn--sm" onclick="resetFilters()">Сбросить все фильтры</button>
+            </div>
+          `;
+          document.getElementById('catalog-pagination').innerHTML = '';
+          return;
+        }
+
+        // Рендерим карточки
+        grid.innerHTML = data.courses.map(c => {
+          const priceHtml = c.is_free || c.price === 0
+            ? '<span class="course-card__price course-card__price--free">Бесплатно</span>'
+            : (c.discount_price > 0
+                ? `<span class="course-card__price">${c.discount_price.toLocaleString('ru-RU')} ₽ <s style="font-size:12px;opacity:0.6;font-weight:normal">${c.price.toLocaleString('ru-RU')} ₽</s></span>`
+                : `<span class="course-card__price">${c.price.toLocaleString('ru-RU')} ₽</span>`);
+
+          return `
+            <article class="course-card">
+              <a href="course.html?id=${c.id}" class="course-card__image" style="position:relative">
+                <img src="${c.image}" alt="${c.title}" style="width:100%;height:180px;object-fit:cover;">
+                <span class="badge badge--warning" style="position:absolute;top:10px;right:10px;font-size:11px;text-transform:capitalize">${c.level}</span>
+              </a>
+              <div class="course-card__body">
+                <span class="course-card__category">${c.category_name || 'Курс'}</span>
+                <h3 class="course-card__title">
+                  <a href="course.html?id=${c.id}" style="color:inherit;text-decoration:none">${c.title}</a>
+                </h3>
+                <p class="course-card__author">${c.teacher_name || 'Преподаватель'}</p>
+                <p class="text-muted" style="font-size:13px;line-height:1.4;margin:8px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${c.short_description || ''}</p>
+                <div class="course-card__meta" style="margin-top:auto">
+                  <span class="course-card__rating">★ ${c.rating} (${c.reviews_count})</span>
+                  ${priceHtml}
+                </div>
+                <div style="margin-top:14px;display:flex;gap:8px">
+                  <a href="course.html?id=${c.id}" class="btn btn--outline btn--sm" style="flex:1">Подробнее</a>
+                  <button class="btn btn--primary btn--sm" onclick="EduVerse.purchaseCourse(${c.id}, '${c.title.replace(/'/g, "\\'")}', ${c.discount_price > 0 ? c.discount_price : (c.is_free ? 0 : c.price)})">
+                    ${c.is_free ? 'Записаться' : 'Купить'}
+                  </button>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('');
+
+        // Рендерим пагинацию
+        renderPagination(data.page, data.totalPages);
+
+      } catch (err) {
+        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--color-danger)">Ошибка загрузки: ${err.message}</div>`;
+      }
+    }
+
+    function renderPagination(page, totalPages) {
+      const pag = document.getElementById('catalog-pagination');
+      if (totalPages <= 1) {
+        pag.innerHTML = '';
+        return;
+      }
+
+      let html = '';
+      if (page > 1) {
+        html += `<button class="pagination__link" onclick="applyFilters(${page - 1})">← Назад</button>`;
+      }
+
+      for (let p = 1; p <= totalPages; p++) {
+        html += `<button class="pagination__link ${p === page ? 'pagination__link--active' : ''}" onclick="applyFilters(${p})">${p}</button>`;
+      }
+
+      if (page < totalPages) {
+        html += `<button class="pagination__link" onclick="applyFilters(${page + 1})">Вперед →</button>`;
+      }
+
+      pag.innerHTML = html;
+    }
+
+    function resetFilters() {
+      document.querySelectorAll('input[name="cat"]').forEach(cb => cb.checked = false);
+      const defaultLevel = document.querySelector('input[name="level"][value=""]');
+      if (defaultLevel) defaultLevel.checked = true;
+      const defaultPrice = document.querySelector('input[name="price"][value=""]');
+      if (defaultPrice) defaultPrice.checked = true;
+      const defaultRating = document.querySelector('input[name="rating"][value=""]');
+      if (defaultRating) defaultRating.checked = true;
+      document.getElementById('search-input').value = '';
+      document.getElementById('sort-select').value = 'popular';
+      applyFilters(1);
+    }
+  </script>
 </body>
 </html>

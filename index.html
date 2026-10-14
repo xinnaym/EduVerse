@@ -5,16 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="EduVerse — платформа онлайн-обучения. Качественный контент, гибкое расписание, практические навыки.">
   <title>EduVerse — Открываем знания всему миру</title>
+  <!-- Сброс стилей и основные стили -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Шапка -->
+  <!-- Шапка сайта с навигацией и действиями -->
   <header class="header">
     <div class="container header__inner">
-      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
-      <nav class="nav" id="nav">
+      <a href="index.html" class="logo">EduVerse</a>
+      <nav class="nav" id="nav" aria-label="Основная навигация">
         <ul class="nav__list">
           <li><a href="catalog.html" class="nav__link">Каталог курсов</a></li>
           <li><a href="about.html" class="nav__link">О нас</a></li>
@@ -32,15 +33,14 @@
   </header>
 
   <main>
-    <!-- ===== Hero ===== -->
+    <!-- ===== Секция Hero со слоганом и описанием платформы ===== -->
     <section class="hero">
       <div class="container hero__inner">
         <div>
           <span class="hero__slogan">Открываем знания всему миру</span>
-          <h1 class="hero__title">Учитесь у лучших — где угодно и когда удобно</h1>
+          <h1 class="hero__title">Учитесь у лучших экспертов — где угодно и когда удобно</h1>
           <p class="hero__text">
-            Качественный контент, гибкое расписание и практические навыки.
-            Тысячи курсов от экспертов индустрии.
+            Качественный контент от практикующих специалистов, гибкое расписание без дедлайнов и практические навыки для реальной карьеры.
           </p>
           <div class="hero__actions">
             <a href="catalog.html" class="btn btn--primary">Начать обучение</a>
@@ -48,135 +48,117 @@
           </div>
         </div>
         <div class="hero__image">
-          <img src="images/hero.jpg" alt="Онлайн-обучение на EduVerse">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Онлайн-обучение на платформе EduVerse" style="border-radius:16px;box-shadow:var(--shadow-lg);width:100%;object-fit:cover;">
         </div>
       </div>
     </section>
 
-    <!-- ===== Преимущества ===== -->
+    <!-- ===== Секция преимуществ обучения на EduVerse ===== -->
     <section class="section">
       <div class="container">
         <h2 class="section__title">Почему выбирают EduVerse</h2>
         <div class="features">
           <article class="feature">
-            <div class="feature__icon"></div>
+            <div class="feature__icon" style="display:grid;place-items:center;font-size:24px">📚</div>
             <h3 class="feature__title">Качественный контент</h3>
-            <p class="feature__text">Курсы создают практикующие эксперты и методисты.</p>
+            <p class="feature__text">Курсы создают практикующие эксперты ведущих IT-компаний и методисты с проверенными программами.</p>
           </article>
           <article class="feature">
-            <div class="feature__icon"></div>
+            <div class="feature__icon" style="display:grid;place-items:center;font-size:24px">⏱️</div>
             <h3 class="feature__title">Гибкое расписание</h3>
-            <p class="feature__text">Учитесь в своём темпе — доступ к урокам 24/7.</p>
+            <p class="feature__text">Учитесь в своём индивидуальном темпе — неограниченный доступ к видеоурокам и заданиям 24/7.</p>
           </article>
           <article class="feature">
-            <div class="feature__icon"></div>
+            <div class="feature__icon" style="display:grid;place-items:center;font-size:24px">💼</div>
             <h3 class="feature__title">Практические навыки</h3>
-            <p class="feature__text">Реальные проекты и задания, которые пригодятся в работе.</p>
+            <p class="feature__text">Реальные проекты, интерактивный редактор кода и сертификат, подтверждающий ваши компетенции.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ===== Популярные категории ===== -->
+    <!-- ===== Блок с популярными категориями курсов ===== -->
     <section class="section section--soft">
       <div class="container">
-        <h2 class="section__title">Популярные категории</h2>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px">
+          <h2 class="section__title" style="margin-bottom:0">Популярные категории</h2>
+          <a href="catalog.html" class="btn btn--outline btn--sm">Все категории →</a>
+        </div>
         <div class="categories">
-          <a href="catalog.html" class="category-card"><div class="category-card__icon"></div><div class="category-card__name">Программирование</div></a>
-          <a href="catalog.html" class="category-card"><div class="category-card__icon"></div><div class="category-card__name">Дизайн</div></a>
-          <a href="catalog.html" class="category-card"><div class="category-card__icon"></div><div class="category-card__name">Маркетинг</div></a>
-          <a href="catalog.html" class="category-card"><div class="category-card__icon"></div><div class="category-card__name">Языки</div></a>
-          <a href="catalog.html" class="category-card"><div class="category-card__icon"></div><div class="category-card__name">Личностный рост</div></a>
+          <a href="catalog.html?category=programming" class="category-card">
+            <div class="category-card__icon" style="display:grid;place-items:center;font-size:24px">💻</div>
+            <div class="category-card__name">Программирование</div>
+          </a>
+          <a href="catalog.html?category=design" class="category-card">
+            <div class="category-card__icon" style="display:grid;place-items:center;font-size:24px">🎨</div>
+            <div class="category-card__name">Дизайн</div>
+          </a>
+          <a href="catalog.html?category=marketing" class="category-card">
+            <div class="category-card__icon" style="display:grid;place-items:center;font-size:24px">📈</div>
+            <div class="category-card__name">Маркетинг</div>
+          </a>
+          <a href="catalog.html?category=languages" class="category-card">
+            <div class="category-card__icon" style="display:grid;place-items:center;font-size:24px">🌍</div>
+            <div class="category-card__name">Языки</div>
+          </a>
+          <a href="catalog.html?category=soft-skills" class="category-card">
+            <div class="category-card__icon" style="display:grid;place-items:center;font-size:24px">🚀</div>
+            <div class="category-card__name">Личностный рост</div>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- ===== Рекомендуемые курсы ===== -->
+    <!-- ===== Блок «Рекомендуемые курсы» (загружаются из БД) ===== -->
     <section class="section">
       <div class="container">
-        <h2 class="section__title">Рекомендуемые курсы</h2>
-        <div class="courses-grid">
-
-          <article class="course-card">
-            <a href="course.html" class="course-card__image"><img src="images/course-1.jpg" alt="Курс JavaScript с нуля"></a>
-            <div class="course-card__body">
-              <span class="course-card__category">Программирование</span>
-              <h3 class="course-card__title">JavaScript с нуля до PRO</h3>
-              <p class="course-card__author">Анна Смирнова</p>
-              <div class="course-card__meta">
-                <span class="course-card__rating">★ 4.9</span>
-                <span class="course-card__price">4 990 ₽</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="course-card">
-            <a href="course.html" class="course-card__image"><img src="images/course-2.jpg" alt="Курс UI/UX дизайн"></a>
-            <div class="course-card__body">
-              <span class="course-card__category">Дизайн</span>
-              <h3 class="course-card__title">UI/UX дизайн в Figma</h3>
-              <p class="course-card__author">Игорь Петров</p>
-              <div class="course-card__meta">
-                <span class="course-card__rating">★ 4.8</span>
-                <span class="course-card__price">3 990 ₽</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="course-card">
-            <a href="course.html" class="course-card__image"><img src="images/course-3.jpg" alt="Курс интернет-маркетинг"></a>
-            <div class="course-card__body">
-              <span class="course-card__category">Маркетинг</span>
-              <h3 class="course-card__title">Интернет-маркетинг с нуля</h3>
-              <p class="course-card__author">Мария Иванова</p>
-              <div class="course-card__meta">
-                <span class="course-card__rating">★ 4.7</span>
-                <span class="course-card__price">2 990 ₽</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="course-card">
-            <a href="course.html" class="course-card__image"><img src="images/course-4.jpg" alt="Курс английский язык"></a>
-            <div class="course-card__body">
-              <span class="course-card__category">Языки</span>
-              <h3 class="course-card__title">Английский для IT</h3>
-              <p class="course-card__author">Джон Смит</p>
-              <div class="course-card__meta">
-                <span class="course-card__rating">★ 5.0</span>
-                <span class="course-card__price course-card__price--free">Бесплатно</span>
-              </div>
-            </div>
-          </article>
-
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px">
+          <h2 class="section__title" style="margin-bottom:0">Рекомендуемые курсы</h2>
+          <a href="catalog.html" class="btn btn--outline btn--sm">Смотреть все курсы →</a>
+        </div>
+        
+        <div class="courses-grid" id="recommended-courses-grid">
+          <!-- Карточки загружаются динамически из базы данных -->
+          <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--color-text-muted)">
+            Загрузка рекомендованных курсов из базы данных...
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== Отзывы ===== -->
+    <!-- ===== Блок с отзывами студентов ===== -->
     <section class="section section--soft">
       <div class="container">
         <h2 class="section__title">Отзывы студентов</h2>
         <div class="reviews-grid">
           <article class="review">
-            <p class="review__text">«Благодаря EduVerse я сменил профессию за 6 месяцев. Уроки понятные, много практики.»</p>
+            <p class="review__text">«Благодаря EduVerse я сменил профессию за 6 месяцев. Уроки невероятно понятные, много практики и обратная связь от наставников!»</p>
             <div class="review__author">
-              <img class="review__avatar" src="images/user-1.jpg" alt="Фото студента">
-              <div><div class="review__name">Алексей К.</div><div class="review__role">Frontend-разработчик</div></div>
+              <img class="review__avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80" alt="Фото студента Ильи">
+              <div>
+                <div class="review__name">Илья Л.</div>
+                <div class="review__role">Frontend-разработчик</div>
+              </div>
             </div>
           </article>
           <article class="review">
-            <p class="review__text">«Очень удобная платформа: учишься в своём темпе, всегда есть доступ к материалам.»</p>
+            <p class="review__text">«Очень удобная платформа: учишься в своём темпе, плеер с кодом суперудобный, а сертификат приняли при устройстве на работу.»</p>
             <div class="review__author">
-              <img class="review__avatar" src="images/user-2.jpg" alt="Фото студентки">
-              <div><div class="review__name">Ольга М.</div><div class="review__role">UX-дизайнер</div></div>
+              <img class="review__avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Фото студентки Екатерины">
+              <div>
+                <div class="review__name">Екатерина М.</div>
+                <div class="review__role">Product Designer</div>
+              </div>
             </div>
           </article>
           <article class="review">
-            <p class="review__text">«Преподаватели отвечают быстро, а сертификат помог при трудоустройстве.»</p>
+            <p class="review__text">«Курсы по маркетингу помогли кратно масштабировать заявки в моем бизнесе. Отдельное спасибо Елене Ковалевой за контент!»</p>
             <div class="review__author">
-              <img class="review__avatar" src="images/user-3.jpg" alt="Фото студента">
-              <div><div class="review__name">Дмитрий В.</div><div class="review__role">Маркетолог</div></div>
+              <img class="review__avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Фото студента Дмитрия">
+              <div>
+                <div class="review__name">Дмитрий С.</div>
+                <div class="review__role">Предприниматель</div>
+              </div>
             </div>
           </article>
         </div>
@@ -184,16 +166,16 @@
     </section>
   </main>
 
-  <!-- Подвал -->
+  <!-- Подвал сайта -->
   <footer class="footer" id="contacts">
     <div class="container">
       <div class="footer__grid">
         <div>
-          <a href="index.html" class="logo" style="color:#fff"><span class="logo__mark">E</span><span>EduVerse</span></a>
-          <p class="mt-20" style="font-size:14px;color:#9ca3af">Открываем знания всему миру.</p>
+          <a href="index.html" class="logo logo--footer">EduVerse</a>
+          <p class="footer__text">Платформа онлайн-обучения нового поколения. Знания, практика, карьера.</p>
         </div>
         <div>
-          <h4 class="footer__title">Платформа</h4>
+          <h4 class="footer__title">Навигация</h4>
           <ul class="footer__list">
             <li><a href="catalog.html">Каталог курсов</a></li>
             <li><a href="teachers.html">Преподаватели</a></li>
@@ -206,8 +188,7 @@
           <ul class="footer__list">
             <li><a href="my-courses.html">Мои курсы</a></li>
             <li><a href="auth.html">Вход / Регистрация</a></li>
-            <li><a href="#">Сертификаты</a></li>
-            <li><a href="#">Помощь</a></li>
+            <li><a href="my-courses.html">Сертификаты</a></li>
           </ul>
         </div>
         <div>
@@ -215,14 +196,54 @@
           <ul class="footer__list">
             <li><a href="mailto:info@eduverse.ru">info@eduverse.ru</a></li>
             <li><a href="tel:+78001234567">+7 (800) 123-45-67</a></li>
-            <li><a href="#">Москва, ул. Примерная, 1</a></li>
+            <li><span>г. Москва, ул. Академическая, д. 14</span></li>
           </ul>
         </div>
       </div>
-      <div class="footer__bottom">© 2025 EduVerse. Все права защищены.</div>
+      <div class="footer__bottom">© 2026 EduVerse. Открываем знания всему миру. Все права защищены.</div>
     </div>
   </footer>
 
+  <!-- Скрипт платформы EduVerse -->
   <script src="js/main.js"></script>
+  <script>
+    // Загрузка рекомендуемых курсов из базы данных
+    document.addEventListener('DOMContentLoaded', async () => {
+      const grid = document.getElementById('recommended-courses-grid');
+      try {
+        const data = await EduVerse.api('/api/courses?recommended=true');
+        if (data.courses && data.courses.length > 0) {
+          grid.innerHTML = data.courses.map(c => {
+            const priceHtml = c.is_free || c.price === 0
+              ? '<span class="course-card__price course-card__price--free">Бесплатно</span>'
+              : (c.discount_price > 0
+                  ? `<span class="course-card__price">${c.discount_price.toLocaleString('ru-RU')} ₽ <s style="font-size:12px;opacity:0.6;font-weight:normal">${c.price.toLocaleString('ru-RU')} ₽</s></span>`
+                  : `<span class="course-card__price">${c.price.toLocaleString('ru-RU')} ₽</span>`);
+
+            return `
+              <article class="course-card">
+                <a href="course.html?id=${c.id}" class="course-card__image">
+                  <img src="${c.image}" alt="${c.title}" style="width:100%;height:180px;object-fit:cover;">
+                </a>
+                <div class="course-card__body">
+                  <span class="course-card__category">${c.category_name || 'Курс'}</span>
+                  <h3 class="course-card__title">
+                    <a href="course.html?id=${c.id}" style="color:inherit;text-decoration:none">${c.title}</a>
+                  </h3>
+                  <p class="course-card__author">${c.teacher_name || 'Эксперт EduVerse'}</p>
+                  <div class="course-card__meta">
+                    <span class="course-card__rating">★ ${c.rating}</span>
+                    ${priceHtml}
+                  </div>
+                </div>
+              </article>
+            `;
+          }).join('');
+        }
+      } catch (err) {
+        console.error('Ошибка загрузки курсов:', err);
+      }
+    });
+  </script>
 </body>
 </html>

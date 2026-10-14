@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Подробное описание курса JavaScript с нуля до PRO на EduVerse.">
-  <title>JavaScript с нуля до PRO — EduVerse</title>
+  <meta name="description" content="Подробное описание курса на платформе онлайн-обучения EduVerse. Программа обучения, навыки, видео-превью и отзывы студентов.">
+  <title>Описание курса — EduVerse</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+  <!-- Шапка сайта -->
   <header class="header">
     <div class="container header__inner">
-      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
+      <a href="index.html" class="logo">EduVerse</a>
       <nav class="nav" id="nav">
         <ul class="nav__list">
-          <li><a href="catalog.html" class="nav__link nav__link--active">Каталог курсов</a></li>
+          <li><a href="catalog.html" class="nav__link">Каталог курсов</a></li>
           <li><a href="about.html" class="nav__link">О нас</a></li>
           <li><a href="teachers.html" class="nav__link">Преподаватели</a></li>
           <li><a href="blog.html" class="nav__link">Блог</a></li>
@@ -31,130 +32,143 @@
   </header>
 
   <main>
-    <div class="container">
+    <div class="container" style="padding-top:20px;padding-bottom:60px">
+      <!-- Хлебные крошки -->
       <nav class="breadcrumbs">
         <a href="index.html">Главная</a> <span>/</span>
         <a href="catalog.html">Каталог</a> <span>/</span>
-        <span>JavaScript с нуля до PRO</span>
+        <span id="crumb-course-title">Загрузка курса...</span>
       </nav>
 
-      <div class="course-layout">
-        <!-- ===== Основной контент ===== -->
+      <div class="course-layout" id="course-details-container">
+        <!-- Левая колонка: Описание, Программа, Отзывы -->
         <div>
+          <!-- Hero курса -->
           <section class="course-hero">
-            <span class="course-hero__category">Программирование</span>
-            <h1 class="course-hero__title">JavaScript с нуля до PRO</h1>
-            <div class="course-hero__meta">
-              <span class="course-hero__rating">★ 4.9 (128 отзывов)</span>
-              <span>Автор: Анна Смирнова</span>
-              <span>24 урока · 12 часов</span>
-              <span>Уровень: начальный</span>
+            <span class="course-hero__category" id="course-category">Категория</span>
+            <h1 class="course-hero__title" id="course-title" style="margin-top:8px">Название курса</h1>
+            <div class="course-hero__meta" id="course-meta">
+              <span id="course-rating">★ 5.0 (0 отзывов)</span>
+              <span id="course-author">Автор: Преподаватель</span>
+              <span id="course-lessons-stat">24 урока</span>
+              <span id="course-level">Уровень: начальный</span>
             </div>
-            <div class="course-hero__video">▶ Видео-превью курса</div>
+
+            <!-- Видео-превью курса -->
+            <div style="margin-top:24px">
+              <h3 style="font-size:16px;margin-bottom:10px;display:flex;align-items:center;gap:6px">
+                <span>🎬</span> <span>Видео-превью курса</span>
+              </h3>
+              <div class="video-wrapper">
+                <video id="preview-video-player" controls preload="metadata" poster="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80">
+                  <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                  Ваш браузер не поддерживает видео HTML5.
+                </video>
+              </div>
+            </div>
           </section>
 
-          <section class="section" style="padding-top:0">
-            <h2 class="section__title">Описание курса</h2>
-            <p class="text-muted mb-20">
-              Этот курс научит вас программировать на JavaScript с нуля. Вы освоите синтаксис,
-              работу с DOM, асинхронность, современные инструменты и соберёте 5 реальных проектов.
+          <!-- Описание курса, для кого и чему научитесь -->
+          <section class="section" style="padding-top:20px">
+            <h2 class="section__title">О курсе</h2>
+            <p class="text-muted mb-20" id="course-desc" style="font-size:16px;line-height:1.6">
+              Подробное описание образовательной программы...
             </p>
+
             <h3 class="mb-20">Чему вы научитесь</h3>
-            <ul class="text-muted mb-20" style="list-style:disc;padding-left:20px">
-              <li>Писать чистый и современный JavaScript (ES6+).</li>
-              <li>Работать с DOM и событиями.</li>
-              <li>Использовать fetch и async/await.</li>
-              <li>Собирать проекты с помощью сборщиков.</li>
+            <ul id="course-learn-list" class="text-muted mb-20" style="list-style:none;padding-left:0;display:flex;flex-direction:column;gap:10px">
+              <!-- Список генерируется через JS -->
             </ul>
-            <h3 class="mb-20">Для кого курс</h3>
-            <p class="text-muted">Для начинающих разработчиков, верстальщиков и всех, кто хочет освоить веб-программирование.</p>
+
+            <h3 class="mb-20">Для кого предназначен этот курс</h3>
+            <p class="text-muted mb-20" id="course-audience">Целевая аудитория курса...</p>
+
+            <h3 class="mb-20">Приобретаемые навыки и технологии</h3>
+            <div id="course-skills-chips" style="display:flex;gap:8px;flex-wrap:wrap">
+              <!-- Теги навыков -->
+            </div>
           </section>
 
-          <!-- ===== Программа курса ===== -->
-          <section class="section" style="padding-top:0">
+          <!-- Программа курса (модули и уроки) -->
+          <section class="section" style="padding-top:10px">
             <h2 class="section__title">Программа курса</h2>
-
-            <div class="program__module">
-              <div class="program__module-head"><span>Модуль 1. Введение в JavaScript</span><span>3 урока</span></div>
-              <div class="program__lessons">
-                <div class="program__lesson">▶ Введение и настройка окружения</div>
-                <div class="program__lesson">▶ Переменные и типы данных</div>
-                <div class="program__lesson">▶ Операторы и выражения</div>
-              </div>
+            <div id="course-modules-list">
+              <!-- Модули и уроки генерируются через JS -->
             </div>
+          </section>
 
-            <div class="program__module">
-              <div class="program__module-head"><span>Модуль 2. Функции и массивы</span><span>4 урока</span></div>
-              <div class="program__lessons">
-                <div class="program__lesson">▶ Функции и области видимости</div>
-                <div class="program__lesson">▶ Массивы и методы</div>
-                <div class="program__lesson">▶ Объекты</div>
-                <div class="program__lesson">▶ Практика: калькулятор</div>
-              </div>
-            </div>
-
-            <div class="program__module">
-              <div class="program__module-head"><span>Модуль 3. DOM и события</span><span>4 урока</span></div>
-              <div class="program__lessons">
-                <div class="program__lesson">▶ Поиск элементов</div>
-                <div class="program__lesson">▶ События</div>
-                <div class="program__lesson">▶ Работа с формами</div>
-                <div class="program__lesson">▶ Практика: todo-лист</div>
+          <!-- Преподаватель курса -->
+          <section class="section" style="padding-top:10px">
+            <h2 class="section__title">Преподаватель курса</h2>
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:24px;display:flex;gap:20px;align-items:flex-start">
+              <img id="teacher-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Преподаватель" style="width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:var(--shadow-sm)">
+              <div>
+                <h3 id="teacher-name" style="font-size:20px;margin-bottom:4px">Анна Смирнова</h3>
+                <p id="teacher-expertise" style="color:var(--color-primary);font-weight:600;font-size:14px;margin-bottom:8px">Frontend-разработчик</p>
+                <p id="teacher-bio" class="text-muted" style="font-size:14px;line-height:1.5;margin-bottom:12px">Биография преподавателя...</p>
+                <a id="teacher-all-courses-link" href="teachers.html" class="btn btn--outline btn--sm">Все курсы преподавателя →</a>
               </div>
             </div>
           </section>
 
-          <!-- ===== Отзывы ===== -->
-          <section class="section" style="padding-top:0">
-            <h2 class="section__title">Отзывы студентов</h2>
-            <div class="reviews-grid">
-              <article class="review">
-                <p class="review__text">«Отличный курс! Всё разложено по полочкам, много практики.»</p>
-                <div class="review__author">
-                  <img class="review__avatar" src="images/user-1.jpg" alt="Фото студента">
-                  <div><div class="review__name">Алексей К.</div><div class="review__role">★ 5.0</div></div>
-                </div>
-              </article>
-              <article class="review">
-                <p class="review__text">«Наконец-то понял async/await. Спасибо автору!»</p>
-                <div class="review__author">
-                  <img class="review__avatar" src="images/user-2.jpg" alt="Фото студентки">
-                  <div><div class="review__name">Ольга М.</div><div class="review__role">★ 4.8</div></div>
-                </div>
-              </article>
+          <!-- Отзывы студентов и форма добавления отзыва -->
+          <section class="section" style="padding-top:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+              <h2 class="section__title" style="margin-bottom:0">Отзывы студентов</h2>
+              <button id="add-review-btn" class="btn btn--outline btn--sm" onclick="showAddReviewModal()">+ Оставить отзыв</button>
+            </div>
+
+            <div id="course-reviews-list" class="reviews-grid" style="grid-template-columns:1fr">
+              <!-- Список отзывов -->
             </div>
           </section>
         </div>
 
-        <!-- ===== Боковая панель ===== -->
+        <!-- Правая колонка (Фиксированный блок покупки курса) -->
         <aside class="course-sidebar">
-          <div class="course-sidebar__price">4 990 ₽ <span class="course-sidebar__old">6 990 ₽</span></div>
-          <span class="course-sidebar__discount">Скидка 28%</span>
+          <div style="position:relative;border-radius:12px;overflow:hidden;margin-bottom:16px">
+            <img id="sidebar-course-img" src="https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?auto=format&fit=crop&w=600&q=80" alt="Превью" style="width:100%;height:180px;object-fit:cover;">
+          </div>
+          
+          <div class="course-sidebar__price" id="sidebar-price">
+            4 990 ₽
+          </div>
 
-          <a href="lesson.html" class="btn btn--primary btn--block">Купить курс</a>
-          <a href="#" class="btn btn--outline btn--block mt-20">Добавить в корзину</a>
+          <div style="margin-bottom:20px" id="sidebar-action-container">
+            <button id="buy-course-main-btn" class="btn btn--primary btn--block">Записаться на курс</button>
+          </div>
 
-          <ul class="course-sidebar__list">
-            <li><span>Уроков</span><span>24</span></li>
-            <li><span>Длительность</span><span>12 ч</span></li>
-            <li><span>Уровень</span><span>Начальный</span></li>
-            <li><span>Сертификат</span><span>Да</span></li>
-            <li><span>Доступ</span><span>Навсегда</span></li>
-          </ul>
+          <p class="text-muted" style="font-size:13px;text-align:center;margin-bottom:20px">
+            ✓ Доступ навсегда ко всем материалам<br>
+            ✓ Именной сертификат об окончании<br>
+            ✓ Практические задания с кодом
+          </p>
+
+          <div style="border-top:1px solid #e2e8f0;padding-top:16px">
+            <h4 style="font-size:15px;margin-bottom:12px">В курс входит:</h4>
+            <ul style="font-size:14px;color:var(--color-text-muted);display:flex;flex-direction:column;gap:8px;list-style:none;padding-left:0">
+              <li id="stat-lessons">📖 24 видеоурока</li>
+              <li>⚡ Интерактивный редактор кода</li>
+              <li>📁 Исходники и чек-листы для скачивания</li>
+              <li>💬 Поддержка преподавателя в уроках</li>
+              <li>🎓 Официальный сертификат EduVerse</li>
+            </ul>
+          </div>
         </aside>
       </div>
     </div>
   </main>
 
+  <!-- Подвал сайта -->
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
         <div>
-          <a href="index.html" class="logo" style="color:#fff"><span class="logo__mark">E</span><span>EduVerse</span></a>
-          <p class="mt-20" style="font-size:14px;color:#9ca3af">Открываем знания всему миру.</p>
+          <a href="index.html" class="logo logo--footer">EduVerse</a>
+          <p class="footer__text">Платформа онлайн-обучения нового поколения.</p>
         </div>
         <div>
-          <h4 class="footer__title">Платформа</h4>
+          <h4 class="footer__title">Навигация</h4>
           <ul class="footer__list">
             <li><a href="catalog.html">Каталог курсов</a></li>
             <li><a href="teachers.html">Преподаватели</a></li>
@@ -177,10 +191,232 @@
           </ul>
         </div>
       </div>
-      <div class="footer__bottom">© 2025 EduVerse. Все права защищены.</div>
+      <div class="footer__bottom">© 2026 EduVerse. Все права защищены.</div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    let currentCourse = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const params = new URLSearchParams(window.location.search);
+      const courseId = params.get('id') || 1;
+
+      try {
+        const data = await EduVerse.api(`/api/courses/${courseId}`);
+        currentCourse = data.course;
+        renderCourseDetails(currentCourse);
+      } catch (err) {
+        document.getElementById('course-details-container').innerHTML = `
+          <div style="grid-column:1/-1;text-align:center;padding:60px 20px">
+            <h2>Курс не найден</h2>
+            <p class="text-muted mt-20">Возможно, курс был удален или перемещен.</p>
+            <a href="catalog.html" class="btn btn--primary mt-20">Перейти в каталог курсов</a>
+          </div>
+        `;
+      }
+    });
+
+    function renderCourseDetails(c) {
+      document.title = `${c.title} — EduVerse`;
+      document.getElementById('crumb-course-title').textContent = c.title;
+      document.getElementById('course-title').textContent = c.title;
+      document.getElementById('course-category').textContent = c.category_name || 'Обучение';
+      document.getElementById('course-rating').textContent = `★ ${c.rating} (${c.reviews_count} отзывов)`;
+      document.getElementById('course-author').textContent = `Автор: ${c.teacher_name || 'Эксперт EduVerse'}`;
+      document.getElementById('course-level').textContent = `Уровень: ${c.level}`;
+      document.getElementById('course-desc').textContent = c.description;
+      document.getElementById('course-audience').textContent = c.target_audience || 'Для всех желающих развиваться в этой сфере.';
+      document.getElementById('sidebar-course-img').src = c.image;
+
+      // Видео
+      if (c.preview_video) {
+        const video = document.getElementById('preview-video-player');
+        video.src = c.preview_video;
+      }
+
+      // Чему научитесь
+      const learnList = document.getElementById('course-learn-list');
+      const learnItems = Array.isArray(c.what_you_will_learn) ? c.what_you_will_learn : [];
+      learnList.innerHTML = learnItems.map(item => `
+        <li style="display:flex;align-items:flex-start;gap:10px">
+          <span style="color:var(--color-success);font-weight:bold;font-size:16px">✓</span>
+          <span>${item}</span>
+        </li>
+      `).join('') || '<li>Практические навыки работы по специальности</li>';
+
+      // Навыки
+      const skillsContainer = document.getElementById('course-skills-chips');
+      const skills = Array.isArray(c.skills) ? c.skills : [];
+      skillsContainer.innerHTML = skills.map(s => `
+        <span class="badge badge--primary" style="font-size:13px;padding:6px 14px">${s}</span>
+      `).join('');
+
+      // Преподаватель
+      document.getElementById('teacher-name').textContent = c.teacher_name || 'Преподаватель EduVerse';
+      document.getElementById('teacher-expertise').textContent = c.teacher_expertise || 'Эксперт направления';
+      document.getElementById('teacher-bio').textContent = c.teacher_bio || 'Опытный практик и наставник.';
+      if (c.teacher_avatar) {
+        document.getElementById('teacher-avatar').src = c.teacher_avatar;
+      }
+
+      // Программа курса
+      const modulesContainer = document.getElementById('course-modules-list');
+      const totalLessons = c.lessons ? c.lessons.length : 0;
+      document.getElementById('course-lessons-stat').textContent = `${totalLessons} уроков`;
+      document.getElementById('stat-lessons').textContent = `📖 ${totalLessons} подробных уроков`;
+
+      if (c.modules && c.modules.length > 0) {
+        modulesContainer.innerHTML = c.modules.map((m, idx) => `
+          <div class="program__module" style="margin-bottom:16px">
+            <div class="program__module-head" style="cursor:pointer" onclick="this.nextElementSibling.classList.toggle('hidden')">
+              <span><strong>${m.title}</strong></span>
+              <span class="badge badge--warning">${m.lessons.length} уроков</span>
+            </div>
+            <div class="program__lessons">
+              ${m.lessons.map(l => `
+                <div class="program__lesson" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px">
+                  <span style="display:flex;align-items:center;gap:8px">
+                    <span>${l.lesson_type === 'code' ? '⚡' : '▶'}</span>
+                    <span>${l.title}</span>
+                  </span>
+                  <span class="text-muted" style="font-size:13px">${l.duration || '15 мин'}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `).join('');
+      } else {
+        modulesContainer.innerHTML = '<p class="text-muted">Программа курса формируется.</p>';
+      }
+
+      // Цена и кнопка покупки/перехода в сайдбаре
+      const priceDiv = document.getElementById('sidebar-price');
+      const actionContainer = document.getElementById('sidebar-action-container');
+
+      if (c.is_free || c.price === 0) {
+        priceDiv.innerHTML = '<span class="course-card__price--free">Бесплатно</span>';
+      } else if (c.discount_price > 0) {
+        priceDiv.innerHTML = `
+          <span>${c.discount_price.toLocaleString('ru-RU')} ₽</span>
+          <s style="font-size:16px;color:var(--color-text-muted);font-weight:normal;margin-left:8px">${c.price.toLocaleString('ru-RU')} ₽</s>
+          <div style="font-size:12px;color:var(--color-success);font-weight:600;margin-top:4px">Скидка ${(100 - Math.round((c.discount_price / c.price) * 100))}% действует прямо сейчас!</div>
+        `;
+      } else {
+        priceDiv.textContent = `${c.price.toLocaleString('ru-RU')} ₽`;
+      }
+
+      if (c.isEnrolled) {
+        const firstLessonId = c.lessons && c.lessons[0] ? c.lessons[0].id : 1;
+        actionContainer.innerHTML = `
+          <div class="badge badge--success btn--block" style="padding:10px;text-align:center;margin-bottom:10px">✓ Вы уже записаны на курс</div>
+          <a href="lesson.html?id=${firstLessonId}" class="btn btn--primary btn--block">Перейти к урокам →</a>
+        `;
+      } else {
+        const finalPrice = c.discount_price > 0 ? c.discount_price : (c.is_free ? 0 : c.price);
+        actionContainer.innerHTML = `
+          <button class="btn btn--primary btn--block" onclick="EduVerse.purchaseCourse(${c.id}, '${c.title.replace(/'/g, "\\'")}', ${finalPrice})">
+            ${c.is_free ? 'Записаться бесплатно' : 'Купить курс'}
+          </button>
+        `;
+      }
+
+      // Отзывы
+      renderReviews(c.reviews || []);
+    }
+
+    function renderReviews(reviews) {
+      const container = document.getElementById('course-reviews-list');
+      if (!reviews || reviews.length === 0) {
+        container.innerHTML = '<p class="text-muted" style="padding:20px 0">Пока нет отзывов. Станьте первым, кто оставит отзыв об этом курсе!</p>';
+        return;
+      }
+
+      container.innerHTML = reviews.map(r => `
+        <article class="review" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <img src="${r.user_avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80'}" alt="${r.user_name}" style="width:40px;height:40px;border-radius:50%;object-fit:cover">
+              <div>
+                <strong>${r.user_name || 'Студент EduVerse'}</strong>
+                <div class="text-muted" style="font-size:12px">${new Date(r.created_at).toLocaleDateString('ru-RU')}</div>
+              </div>
+            </div>
+            <div style="color:var(--color-accent);font-size:16px">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+          </div>
+          <p style="font-size:15px;line-height:1.5;color:var(--color-text)">«${r.comment}»</p>
+        </article>
+      `).join('');
+    }
+
+    function showAddReviewModal() {
+      if (!EduVerse.currentUser) {
+        EduVerse.showToast('Войдите в систему, чтобы оставить отзыв', 'info');
+        setTimeout(() => location.href = 'auth.html', 800);
+        return;
+      }
+
+      let selectedStars = 5;
+
+      const modalHtml = `
+        <h2 style="font-size:22px;margin-bottom:8px">Оставить отзыв о курсе</h2>
+        <p class="text-muted" style="margin-bottom:20px">Поделитесь вашим впечатлением от обучения</p>
+
+        <div style="margin-bottom:18px">
+          <label style="display:block;font-size:14px;font-weight:600;margin-bottom:6px">Ваша оценка:</label>
+          <div class="rating-picker" id="modal-rating-picker">
+            <span class="star active" data-val="1">★</span>
+            <span class="star active" data-val="2">★</span>
+            <span class="star active" data-val="3">★</span>
+            <span class="star active" data-val="4">★</span>
+            <span class="star active" data-val="5">★</span>
+          </div>
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="review-text-input">Текст отзыва</label>
+          <textarea class="form__input" id="review-text-input" rows="4" placeholder="Что вам больше всего понравилось в подаче материала и практических заданиях?" required></textarea>
+        </div>
+
+        <button id="submit-review-btn" class="btn btn--primary btn--block">Опубликовать отзыв</button>
+      `;
+
+      EduVerse.openModal(modalHtml);
+
+      // Обработка звезд
+      const stars = document.querySelectorAll('#modal-rating-picker .star');
+      stars.forEach(star => {
+        star.onclick = () => {
+          selectedStars = parseInt(star.getAttribute('data-val'), 10);
+          stars.forEach(s => {
+            const val = parseInt(s.getAttribute('data-val'), 10);
+            s.classList.toggle('active', val <= selectedStars);
+          });
+        };
+      });
+
+      document.getElementById('submit-review-btn').onclick = async () => {
+        const text = document.getElementById('review-text-input').value.trim();
+        if (!text) {
+          EduVerse.showToast('Пожалуйста, напишите текст отзыва', 'error');
+          return;
+        }
+
+        try {
+          await EduVerse.api(`/api/courses/${currentCourse.id}/reviews`, {
+            method: 'POST',
+            body: { rating: selectedStars, comment: text }
+          });
+          EduVerse.closeModal();
+          EduVerse.showToast('Отзыв успешно добавлен!', 'success');
+          // Перезагрузка страницы курса
+          setTimeout(() => location.reload(), 600);
+        } catch (err) {
+          EduVerse.showToast(err.message, 'error');
+        }
+      };
+    }
+  </script>
 </body>
 </html>

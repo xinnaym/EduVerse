@@ -1,0 +1,16 @@
+{
+  "name": "eduverse",
+  "version": "1.0.0",
+  "description": "EduVerse — онлайн-платформа обучения",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "echo 'No build step required for Node/vanilla frontend'"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

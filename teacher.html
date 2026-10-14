@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Личный кабинет преподавателя EduVerse.">
+  <meta name="description" content="Личный кабинет преподавателя EduVerse: управление курсами, уроками, статистика, ответы на вопросы студентов и профиль.">
   <title>Кабинет преподавателя — EduVerse</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+  <!-- Шапка сайта -->
   <header class="header">
     <div class="container header__inner">
-      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
+      <a href="index.html" class="logo">EduVerse</a>
       <nav class="nav" id="nav">
         <ul class="nav__list">
           <li><a href="teacher.html" class="nav__link nav__link--active">Кабинет</a></li>
@@ -21,163 +22,552 @@
         </ul>
       </nav>
       <div class="header__actions">
-        <a href="auth.html" class="btn btn--ghost btn--sm">Выйти</a>
+        <a href="teacher.html" class="btn btn--primary btn--sm">Кабинет учителя</a>
         <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
 
   <main>
-    <div class="container" style="padding-top:30px">
-      <h1 class="section__title">Кабинет преподавателя</h1>
+    <div class="container" style="padding-top:30px;padding-bottom:60px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:16px">
+        <div>
+          <h1 class="section__title" style="margin-bottom:6px">Кабинет преподавателя</h1>
+          <p class="text-muted" id="teacher-greeting">Панель управления авторскими курсами и студентами</p>
+        </div>
+        <button class="btn btn--primary btn--sm" onclick="openCreateCourseModal()">+ Создать новый курс</button>
+      </div>
 
       <div class="dashboard">
-        <!-- Боковое меню -->
+        <!-- Боковое меню разделов кабинета -->
         <aside class="sidebar">
-          <a href="teacher.html" class="sidebar__link sidebar__link--active">Обзор</a>
-          <a href="#" class="sidebar__link">Мои курсы</a>
-          <a href="#" class="sidebar__link">Создать курс</a>
-          <a href="#" class="sidebar__link">Вопросы студентов</a>
-          <a href="#" class="sidebar__link">Профиль</a>
+          <a href="javascript:void(0)" onclick="switchTeacherTab('courses')" id="tab-courses-link" class="sidebar__link sidebar__link--active">📚 Мои курсы</a>
+          <a href="javascript:void(0)" onclick="switchTeacherTab('questions')" id="tab-questions-link" class="sidebar__link">
+            💬 Вопросы студентов <span id="badge-unanswered-count" class="badge badge--warning" style="margin-left:6px;font-size:11px">0</span>
+          </a>
+          <a href="javascript:void(0)" onclick="switchTeacherTab('profile')" id="tab-profile-link" class="sidebar__link">👤 Профиль преподавателя</a>
+          <a href="catalog.html" class="sidebar__link">🔍 Каталог курсов</a>
         </aside>
 
-        <!-- Контент -->
+        <!-- Основной контент вкладки -->
         <div>
-          <!-- Статистика -->
-          <div class="stats">
+          <!-- Статистика преподавателя -->
+          <div class="stats mb-20" style="margin-bottom:28px">
             <div class="stat-card">
-              <div class="stat-card__label">Студентов</div>
-              <div class="stat-card__value">1 248</div>
+              <div class="stat-card__label">Студентов на курсах</div>
+              <div class="stat-card__value" id="stat-students">0</div>
             </div>
             <div class="stat-card">
-              <div class="stat-card__label">Курсов</div>
-              <div class="stat-card__value">6</div>
+              <div class="stat-card__label">Курсов создано</div>
+              <div class="stat-card__value" id="stat-courses">0</div>
             </div>
             <div class="stat-card">
               <div class="stat-card__label">Средний рейтинг</div>
-              <div class="stat-card__value">4.8</div>
+              <div class="stat-card__value" id="stat-rating">5.0</div>
             </div>
             <div class="stat-card">
-              <div class="stat-card__label">Доход</div>
-              <div class="stat-card__value">312 400 ₽</div>
+              <div class="stat-card__label">Общий доход</div>
+              <div class="stat-card__value" id="stat-revenue" style="color:var(--color-success)">0 ₽</div>
             </div>
           </div>
 
-          <!-- Таблица курсов -->
-          <h2 class="section__title" style="font-size:22px">Мои курсы</h2>
-          <div class="table-wrap">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Курс</th>
-                  <th>Студентов</th>
-                  <th>Рейтинг</th>
-                  <th>Цена</th>
-                  <th>Статус</th>
-                  <th>Действия</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>JavaScript с нуля до PRO</td>
-                  <td>420</td>
-                  <td>★ 4.9</td>
-                  <td>4 990 ₽</td>
-                  <td><span class="badge badge--success">Опубликован</span></td>
-                  <td><a href="#" class="btn btn--outline btn--sm">Редактировать</a></td>
-                </tr>
-                <tr>
-                  <td>Продвинутый JavaScript</td>
-                  <td>210</td>
-                  <td>★ 4.8</td>
-                  <td>5 490 ₽</td>
-                  <td><span class="badge badge--success">Опубликован</span></td>
-                  <td><a href="#" class="btn btn--outline btn--sm">Редактировать</a></td>
-                </tr>
-                <tr>
-                  <td>React для начинающих</td>
-                  <td>0</td>
-                  <td>—</td>
-                  <td>4 490 ₽</td>
-                  <td><span class="badge badge--warning">Черновик</span></td>
-                  <td><a href="#" class="btn btn--outline btn--sm">Редактировать</a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <!-- ===== 1. ВКЛАДКА КУРСОВ ===== -->
+          <div id="section-courses">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+              <h2 class="section__title" style="font-size:22px;margin-bottom:0">Управление курсами</h2>
+              <button class="btn btn--outline btn--sm" onclick="openCreateCourseModal()">+ Создать курс</button>
+            </div>
 
-          <!-- Вопросы студентов -->
-          <section class="section">
-            <h2 class="section__title" style="font-size:22px">Вопросы студентов</h2>
             <div class="table-wrap">
               <table class="table">
                 <thead>
-                  <tr><th>Студент</th><th>Курс / урок</th><th>Вопрос</th><th>Действие</th></tr>
+                  <tr>
+                    <th>Курс</th>
+                    <th>Студентов</th>
+                    <th>Рейтинг</th>
+                    <th>Цена</th>
+                    <th>Уроков</th>
+                    <th>Действия</th>
+                  </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>Алексей К.</td>
-                    <td>JavaScript / Урок 3</td>
-                    <td>Не понял разницу между == и ===</td>
-                    <td><a href="#" class="btn btn--primary btn--sm">Ответить</a></td>
-                  </tr>
-                  <tr>
-                    <td>Ольга М.</td>
-                    <td>JavaScript / Урок 7</td>
-                    <td>Как работает замыкание?</td>
-                    <td><a href="#" class="btn btn--primary btn--sm">Ответить</a></td>
-                  </tr>
+                <tbody id="teacher-courses-table-body">
+                  <tr><td colspan="6" style="text-align:center;padding:30px">Загрузка ваших курсов...</td></tr>
                 </tbody>
               </table>
             </div>
-          </section>
+          </div>
 
-          <!-- Форма создания курса -->
-          <section class="section">
-            <h2 class="section__title" style="font-size:22px">Создать новый курс</h2>
-            <form onsubmit="return false;">
+          <!-- ===== 2. ВКЛАДКА ВОПРОСОВ СТУДЕНТОВ ===== -->
+          <div id="section-questions" style="display:none">
+            <h2 class="section__title" style="font-size:22px;margin-bottom:18px">Вопросы от студентов по урокам</h2>
+            <div id="teacher-questions-list" style="display:flex;flex-direction:column;gap:16px">
+              <!-- Загружаются через JS -->
+            </div>
+          </div>
+
+          <!-- ===== 3. ВКЛАДКА РЕДАКТИРОВАНИЯ ПРОФИЛЯ ===== -->
+          <div id="section-profile" style="display:none">
+            <h2 class="section__title" style="font-size:22px;margin-bottom:18px">Редактирование профиля преподавателя</h2>
+            
+            <form id="teacher-profile-form" onsubmit="saveTeacherProfile(event)" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:24px;max-width:680px">
               <div class="form__group">
-                <label class="form__label" for="c-title">Название курса</label>
-                <input class="form__input" type="text" id="c-title" placeholder="Например, React для начинающих">
+                <label class="form__label" for="prof-name">ФИО</label>
+                <input class="form__input" type="text" id="prof-name" required>
               </div>
-              <div class="form__row">
-                <div class="form__group">
-                  <label class="form__label" for="c-category">Категория</label>
-                  <select class="form__select" id="c-category">
-                    <option>Программирование</option>
-                    <option>Дизайн</option>
-                    <option>Маркетинг</option>
-                    <option>Языки</option>
-                    <option>Личностный рост</option>
-                  </select>
-                </div>
-                <div class="form__group">
-                  <label class="form__label" for="c-price">Цена, ₽</label>
-                  <input class="form__input" type="number" id="c-price" placeholder="4990">
-                </div>
-              </div>
+
               <div class="form__group">
-                <label class="form__label" for="c-desc">Описание</label>
-                <textarea class="form__textarea" id="c-desc" placeholder="О чём курс, для кого, какие навыки..."></textarea>
+                <label class="form__label" for="prof-avatar">URL фотографии / аватара</label>
+                <input class="form__input" type="url" id="prof-avatar" required>
               </div>
+
               <div class="form__group">
-                <label class="form__label" for="c-file">Загрузить материалы</label>
-                <input class="form__input" type="file" id="c-file">
+                <label class="form__label" for="prof-expertise">Сфера экспертизы (специализация)</label>
+                <input class="form__input" type="text" id="prof-expertise" placeholder="Frontend, UI/UX, Data Science..." required>
               </div>
-              <button type="submit" class="btn btn--primary">Сохранить курс</button>
+
+              <div class="form__group">
+                <label class="form__label" for="prof-experience">Опыт работы</label>
+                <input class="form__input" type="text" id="prof-experience" placeholder="10 лет в веб-разработке, спикер..." required>
+              </div>
+
+              <div class="form__group">
+                <label class="form__label" for="prof-bio">Биография и описание для студентов</label>
+                <textarea class="form__input" id="prof-bio" rows="4" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--primary">Сохранить изменения профиля</button>
             </form>
-          </section>
+          </div>
         </div>
       </div>
     </div>
   </main>
 
+  <!-- Подвал сайта -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__bottom" style="border:none;padding-top:0">© 2025 EduVerse. Все права защищены.</div>
+      <div class="footer__bottom">© 2026 EduVerse. Кабинет преподавателя. Все права защищены.</div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    let teacherData = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Проверка роли
+      if (!EduVerse.currentUser || (EduVerse.currentUser.role !== 'teacher' && EduVerse.currentUser.role !== 'admin')) {
+        document.querySelector('main .container').innerHTML = `
+          <div style="background:#f8fafc;border:1px dashed #cbd5e1;border-radius:16px;padding:50px 20px;text-align:center;max-width:600px;margin:40px auto">
+            <h3>Доступ ограничен</h3>
+            <p class="text-muted mt-20">Этот раздел предназначен для преподавателей EduVerse.</p>
+            <div style="display:flex;gap:12px;justify-content:center;margin-top:20px">
+              <a href="auth.html" class="btn btn--primary">Авторизоваться</a>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      await loadTeacherDashboard();
+    });
+
+    async function loadTeacherDashboard() {
+      try {
+        teacherData = await EduVerse.api('/api/teacher/dashboard');
+        
+        document.getElementById('teacher-greeting').textContent = `Преподаватель: ${teacherData.profile.full_name} (${teacherData.profile.expertise || 'Эксперт'})`;
+        document.getElementById('stat-students').textContent = teacherData.stats.totalStudents;
+        document.getElementById('stat-courses').textContent = teacherData.stats.totalCourses;
+        document.getElementById('stat-rating').textContent = '★ ' + teacherData.stats.avgRating;
+        document.getElementById('stat-revenue').textContent = teacherData.stats.totalRevenue.toLocaleString('ru-RU') + ' ₽';
+
+        // Неотвеченные вопросы
+        const unanswered = teacherData.questions.filter(q => !q.answer_text).length;
+        document.getElementById('badge-unanswered-count').textContent = unanswered;
+
+        // Рендерим курсы
+        renderCoursesTable(teacherData.courses);
+        // Рендерим вопросы
+        renderTeacherQuestions(teacherData.questions);
+        // Заполняем форму профиля
+        populateProfileForm(teacherData.profile);
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    function renderCoursesTable(courses) {
+      const tbody = document.getElementById('teacher-courses-table-body');
+      if (!courses || courses.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px">У вас пока нет созданных курсов. Нажмите «Создать новый курс».</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = courses.map(c => `
+        <tr>
+          <td>
+            <div style="display:flex;align-items:center;gap:10px">
+              <img src="${c.image}" alt="${c.title}" style="width:48px;height:36px;border-radius:6px;object-fit:cover">
+              <div>
+                <strong><a href="course.html?id=${c.id}" style="color:inherit;text-decoration:none">${c.title}</a></strong>
+                <div class="text-muted" style="font-size:12px">${c.category_name || 'Курс'}</div>
+              </div>
+            </div>
+          </td>
+          <td>${c.students_count || c.orders_count || 0}</td>
+          <td>★ ${c.rating}</td>
+          <td>${c.is_free ? 'Бесплатно' : `${c.price.toLocaleString('ru-RU')} ₽`}</td>
+          <td>${c.lessons_count} уроков</td>
+          <td>
+            <div style="display:flex;gap:6px">
+              <button class="btn btn--outline btn--sm" onclick="openAddLessonModal(${c.id}, '${c.title.replace(/'/g, "\\'")}')" title="Добавить урок">+ Урок</button>
+              <button class="btn btn--outline btn--sm" onclick="openEditCourseModal(${c.id})" title="Редактировать">✏️</button>
+              <button class="btn btn--ghost btn--sm" style="color:var(--color-danger)" onclick="deleteCourse(${c.id})" title="Удалить">🗑️</button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderTeacherQuestions(questions) {
+      const container = document.getElementById('teacher-questions-list');
+      if (!questions || questions.length === 0) {
+        container.innerHTML = '<div style="background:#f8fafc;padding:30px;border-radius:12px;text-align:center" class="text-muted">Вопросов от студентов пока нет.</div>';
+        return;
+      }
+
+      container.innerHTML = questions.map(q => `
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:20px;box-shadow:var(--shadow-sm)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+            <div>
+              <span class="badge badge--primary" style="margin-bottom:4px;display:inline-block">${q.course_title}</span>
+              <h4 style="font-size:15px;color:var(--color-text-muted)">Урок: ${q.lesson_title}</h4>
+            </div>
+            <span class="text-muted" style="font-size:12px">${new Date(q.created_at).toLocaleString('ru-RU')}</span>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <img src="${q.student_avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80'}" alt="${q.student_name}" style="width:36px;height:36px;border-radius:50%;object-fit:cover">
+            <div>
+              <strong>${q.student_name}</strong>
+              <div class="text-muted" style="font-size:12px">Студент курса</div>
+            </div>
+          </div>
+
+          <p style="font-size:15px;line-height:1.5;background:#f8fafc;border-radius:8px;padding:12px;margin-bottom:14px">
+            <strong>Вопрос:</strong> ${q.question_text}
+          </p>
+
+          ${q.answer_text ? `
+            <div style="background:#ecfdf5;border-left:3px solid var(--color-success);border-radius:6px;padding:12px">
+              <span style="font-size:12px;font-weight:700;color:var(--color-success)">Ваш ответ (${new Date(q.answered_at).toLocaleDateString('ru-RU')}):</span>
+              <p style="font-size:14px;margin-top:4px">${q.answer_text}</p>
+            </div>
+          ` : `
+            <div style="border-top:1px solid #e2e8f0;padding-top:12px">
+              <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px">Написать ответ студенту:</label>
+              <textarea id="answer-text-${q.id}" class="form__input" rows="2" placeholder="Напишите подробное пояснение..."></textarea>
+              <button class="btn btn--primary btn--sm mt-20" onclick="submitTeacherAnswer(${q.id})">Отправить ответ студенту</button>
+            </div>
+          `}
+        </div>
+      `).join('');
+    }
+
+    function populateProfileForm(profile) {
+      document.getElementById('prof-name').value = profile.full_name || '';
+      document.getElementById('prof-avatar').value = profile.avatar || '';
+      document.getElementById('prof-expertise').value = profile.expertise || '';
+      document.getElementById('prof-experience').value = profile.experience || '';
+      document.getElementById('prof-bio').value = profile.bio || '';
+    }
+
+    async function saveTeacherProfile(e) {
+      e.preventDefault();
+      try {
+        const body = {
+          full_name: document.getElementById('prof-name').value.trim(),
+          avatar: document.getElementById('prof-avatar').value.trim(),
+          expertise: document.getElementById('prof-expertise').value.trim(),
+          experience: document.getElementById('prof-experience').value.trim(),
+          bio: document.getElementById('prof-bio').value.trim()
+        };
+
+        const res = await EduVerse.api('/api/teacher/profile', {
+          method: 'PUT',
+          body
+        });
+
+        EduVerse.setUser(res.user);
+        EduVerse.showToast(res.message, 'success');
+        await loadTeacherDashboard();
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    async function submitTeacherAnswer(qId) {
+      const textarea = document.getElementById(`answer-text-${qId}`);
+      const text = textarea ? textarea.value.trim() : '';
+      if (!text) {
+        EduVerse.showToast('Введите текст ответа', 'error');
+        return;
+      }
+
+      try {
+        const res = await EduVerse.api(`/api/teacher/questions/${qId}/answer`, {
+          method: 'POST',
+          body: { answer_text: text }
+        });
+        EduVerse.showToast(res.message, 'success');
+        await loadTeacherDashboard();
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    function switchTeacherTab(tab) {
+      document.getElementById('section-courses').style.display = tab === 'courses' ? 'block' : 'none';
+      document.getElementById('section-questions').style.display = tab === 'questions' ? 'block' : 'none';
+      document.getElementById('section-profile').style.display = tab === 'profile' ? 'block' : 'none';
+
+      document.getElementById('tab-courses-link').classList.toggle('sidebar__link--active', tab === 'courses');
+      document.getElementById('tab-questions-link').classList.toggle('sidebar__link--active', tab === 'questions');
+      document.getElementById('tab-profile-link').classList.toggle('sidebar__link--active', tab === 'profile');
+    }
+
+    // Модальное окно создания курса
+    function openCreateCourseModal() {
+      const html = `
+        <h2 style="font-size:22px;margin-bottom:12px">Создание нового курса</h2>
+        <form id="create-course-form" onsubmit="handleCreateCourse(event)">
+          <div class="form__group">
+            <label class="form__label">Название курса</label>
+            <input class="form__input" type="text" id="new-course-title" placeholder="Например: Архитектура React приложений" required>
+          </div>
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label">Категория</label>
+              <select class="form__input" id="new-course-category">
+                <option value="1">Программирование</option>
+                <option value="2">Дизайн</option>
+                <option value="3">Маркетинг</option>
+                <option value="4">Языки</option>
+                <option value="5">Личностный рост</option>
+              </select>
+            </div>
+            <div class="form__group">
+              <label class="form__label">Уровень</label>
+              <select class="form__input" id="new-course-level">
+                <option value="начальный">Начальный</option>
+                <option value="средний">Средний</option>
+                <option value="продвинутый">Продвинутый</option>
+              </select>
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label">Цена (₽)</label>
+              <input class="form__input" type="number" id="new-course-price" placeholder="4990" value="4990">
+            </div>
+            <div class="form__group">
+              <label class="form__label">Цена со скидкой (0 если нет)</label>
+              <input class="form__input" type="number" id="new-course-discount" placeholder="0" value="0">
+            </div>
+          </div>
+          <div class="form__group">
+            <label class="form__label">Краткое описание (для каталога)</label>
+            <input class="form__input" type="text" id="new-course-short-desc" placeholder="Интенсивный курс для начинающих разработчиков..." required>
+          </div>
+          <div class="form__group">
+            <label class="form__label">Полное описание курса</label>
+            <textarea class="form__input" id="new-course-desc" rows="3" placeholder="Чему посвящен курс, какие проекты будут созданы..." required></textarea>
+          </div>
+          <div class="form__group">
+            <label class="form__label">Ссылка на изображение обложки</label>
+            <input class="form__input" type="url" id="new-course-image" value="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80">
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Опубликовать курс на EduVerse</button>
+        </form>
+      `;
+      EduVerse.openModal(html);
+    }
+
+    async function handleCreateCourse(e) {
+      e.preventDefault();
+      try {
+        const body = {
+          title: document.getElementById('new-course-title').value.trim(),
+          category_id: parseInt(document.getElementById('new-course-category').value, 10),
+          level: document.getElementById('new-course-level').value,
+          price: parseInt(document.getElementById('new-course-price').value, 10) || 0,
+          discount_price: parseInt(document.getElementById('new-course-discount').value, 10) || 0,
+          short_description: document.getElementById('new-course-short-desc').value.trim(),
+          description: document.getElementById('new-course-desc').value.trim(),
+          image: document.getElementById('new-course-image').value.trim()
+        };
+
+        const res = await EduVerse.api('/api/teacher/courses', {
+          method: 'POST',
+          body
+        });
+
+        EduVerse.closeModal();
+        EduVerse.showToast(res.message, 'success');
+        await loadTeacherDashboard();
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    // Модальное окно добавления урока
+    function openAddLessonModal(courseId, courseTitle) {
+      const html = `
+        <h2 style="font-size:22px;margin-bottom:8px">Добавить урок в курс</h2>
+        <p class="text-muted" style="margin-bottom:16px">Курс: ${courseTitle}</p>
+        <form id="add-lesson-form" onsubmit="handleAddLesson(event, ${courseId})">
+          <div class="form__group">
+            <label class="form__label">Название модуля</label>
+            <input class="form__input" type="text" id="lesson-module" placeholder="Модуль 1. Основы" value="Модуль 1. Основы" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label">Название урока</label>
+            <input class="form__input" type="text" id="lesson-title" placeholder="Урок 1. Введение в тему" required>
+          </div>
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label">Тип урока</label>
+              <select class="form__input" id="lesson-type">
+                <option value="video">Видеоурок</option>
+                <option value="code">Интерактивный код (Playground)</option>
+              </select>
+            </div>
+            <div class="form__group">
+              <label class="form__label">Длительность</label>
+              <input class="form__input" type="text" id="lesson-duration" value="18:30" placeholder="15:00">
+            </div>
+          </div>
+          <div class="form__group">
+            <label class="form__label">URL видео (mp4)</label>
+            <input class="form__input" type="url" id="lesson-video-url" value="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">
+          </div>
+          <div class="form__group">
+            <label class="form__label">Стартовый код для практики (необязательно)</label>
+            <textarea class="form__input" id="lesson-code" rows="3" placeholder="// Стартовый код"></textarea>
+          </div>
+          <div class="form__group">
+            <label class="form__label">Название файла материалов для скачивания</label>
+            <input class="form__input" type="text" id="lesson-mat-name" value="Методические материалы к уроку (PDF)">
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Сохранить урок</button>
+        </form>
+      `;
+      EduVerse.openModal(html);
+    }
+
+    async function handleAddLesson(e, courseId) {
+      e.preventDefault();
+      try {
+        const body = {
+          module_title: document.getElementById('lesson-module').value.trim(),
+          title: document.getElementById('lesson-title').value.trim(),
+          lesson_type: document.getElementById('lesson-type').value,
+          duration: document.getElementById('lesson-duration').value.trim(),
+          video_url: document.getElementById('lesson-video-url').value.trim(),
+          code_snippet: document.getElementById('lesson-code').value,
+          materials_name: document.getElementById('lesson-mat-name').value.trim()
+        };
+
+        const res = await EduVerse.api(`/api/teacher/courses/${courseId}/lessons`, {
+          method: 'POST',
+          body
+        });
+
+        EduVerse.closeModal();
+        EduVerse.showToast(res.message, 'success');
+        await loadTeacherDashboard();
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    // Редактирование курса
+    function openEditCourseModal(courseId) {
+      const course = teacherData.courses.find(c => c.id === courseId);
+      if (!course) return;
+
+      const html = `
+        <h2 style="font-size:22px;margin-bottom:12px">Редактирование курса</h2>
+        <form onsubmit="handleEditCourse(event, ${courseId})">
+          <div class="form__group">
+            <label class="form__label">Название</label>
+            <input class="form__input" type="text" id="edit-title" value="${course.title}" required>
+          </div>
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label">Цена (₽)</label>
+              <input class="form__input" type="number" id="edit-price" value="${course.price}" required>
+            </div>
+            <div class="form__group">
+              <label class="form__label">Уровень</label>
+              <select class="form__input" id="edit-level">
+                <option value="начальный" ${course.level === 'начальный' ? 'selected' : ''}>Начальный</option>
+                <option value="средний" ${course.level === 'средний' ? 'selected' : ''}>Средний</option>
+                <option value="продвинутый" ${course.level === 'продвинутый' ? 'selected' : ''}>Продвинутый</option>
+              </select>
+            </div>
+          </div>
+          <div class="form__group">
+            <label class="form__label">Краткое описание</label>
+            <input class="form__input" type="text" id="edit-short-desc" value="${course.short_description || ''}" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label">Полное описание</label>
+            <textarea class="form__input" id="edit-desc" rows="3" required>${course.description || ''}</textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Сохранить изменения</button>
+        </form>
+      `;
+      EduVerse.openModal(html);
+    }
+
+    async function handleEditCourse(e, courseId) {
+      e.preventDefault();
+      try {
+        const body = {
+          title: document.getElementById('edit-title').value.trim(),
+          price: parseInt(document.getElementById('edit-price').value, 10),
+          level: document.getElementById('edit-level').value,
+          short_description: document.getElementById('edit-short-desc').value.trim(),
+          description: document.getElementById('edit-desc').value.trim()
+        };
+
+        const res = await EduVerse.api(`/api/teacher/courses/${courseId}`, {
+          method: 'PUT',
+          body
+        });
+
+        EduVerse.closeModal();
+        EduVerse.showToast(res.message, 'success');
+        await loadTeacherDashboard();
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    async function deleteCourse(courseId) {
+      if (!confirm('Вы уверены, что хотите удалить этот курс?')) return;
+      try {
+        const res = await EduVerse.api(`/api/teacher/courses/${courseId}`, {
+          method: 'DELETE'
+        });
+        EduVerse.showToast(res.message, 'success');
+        await loadTeacherDashboard();
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+  </script>
 </body>
 </html>

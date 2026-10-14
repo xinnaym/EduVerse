@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Преподаватели платформы EduVerse.">
+  <meta name="description" content="Преподаватели платформы EduVerse: ведущие эксперты индустрии, авторы курсов по программированию, дизайну, маркетингу и языкам.">
   <title>Преподаватели — EduVerse</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+  <!-- Шапка сайта -->
   <header class="header">
     <div class="container header__inner">
-      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
+      <a href="index.html" class="logo">EduVerse</a>
       <nav class="nav" id="nav">
         <ul class="nav__list">
           <li><a href="catalog.html" class="nav__link">Каталог курсов</a></li>
@@ -31,94 +32,43 @@
   </header>
 
   <main>
-    <div class="container">
+    <div class="container" style="padding-top:20px;padding-bottom:60px">
+      <!-- Хлебные крошки -->
       <nav class="breadcrumbs">
         <a href="index.html">Главная</a> <span>/</span> <span>Преподаватели</span>
       </nav>
 
-      <h1 class="section__title">Наши преподаватели</h1>
+      <div style="margin-bottom:30px">
+        <h1 class="section__title" style="margin-bottom:8px">Наши преподаватели</h1>
+        <p class="text-muted" style="max-width:700px">
+          Учитесь напрямую у ведущих экспертов индустрии. Каждый преподаватель EduVerse имеет многолетний опыт практической работы в реальных IT-проектах.
+        </p>
+      </div>
 
-      <div class="teachers-grid">
-
-        <article class="teacher-card">
-          <img class="teacher-card__avatar" src="images/teacher-1.jpg" alt="Фото Анны Смирновой">
-          <h3 class="teacher-card__name">Анна Смирнова</h3>
-          <p class="teacher-card__spec">Frontend-разработчик</p>
-          <p class="teacher-card__text">10 лет опыта в веб-разработке. Специализация: JavaScript, React, TypeScript.</p>
-          <p class="text-muted" style="font-size:14px;margin-bottom:14px">★ 4.9 · 6 курсов</p>
-          <a href="course.html" class="btn btn--outline btn--sm">Курсы преподавателя</a>
-        </article>
-
-        <article class="teacher-card">
-          <img class="teacher-card__avatar" src="images/teacher-2.jpg" alt="Фото Игоря Петрова">
-          <h3 class="teacher-card__name">Игорь Петров</h3>
-          <p class="teacher-card__spec">UI/UX дизайнер</p>
-          <p class="teacher-card__text">Работал с крупными продуктовыми командами. Обучает дизайну в Figma.</p>
-          <p class="text-muted" style="font-size:14px;margin-bottom:14px">★ 4.8 · 4 курса</p>
-          <a href="course.html" class="btn btn--outline btn--sm">Курсы преподавателя</a>
-        </article>
-
-        <article class="teacher-card">
-          <img class="teacher-card__avatar" src="images/teacher-3.jpg" alt="Фото Марии Ивановой">
-          <h3 class="teacher-card__name">Мария Иванова</h3>
-          <p class="teacher-card__spec">Маркетолог</p>
-          <p class="teacher-card__text">Эксперт по интернет-маркетингу и аналитике. 8 лет практики.</p>
-          <p class="text-muted" style="font-size:14px;margin-bottom:14px">★ 4.7 · 5 курсов</p>
-          <a href="course.html" class="btn btn--outline btn--sm">Курсы преподавателя</a>
-        </article>
-
-        <article class="teacher-card">
-          <img class="teacher-card__avatar" src="images/teacher-4.jpg" alt="Фото Джона Смита">
-          <h3 class="teacher-card__name">Джон Смит</h3>
-          <p class="teacher-card__spec">Преподаватель английского</p>
-          <p class="teacher-card__text">Носитель языка, специализируется на английском для IT.</p>
-          <p class="text-muted" style="font-size:14px;margin-bottom:14px">★ 5.0 · 3 курса</p>
-          <a href="course.html" class="btn btn--outline btn--sm">Курсы преподавателя</a>
-        </article>
-
-        <article class="teacher-card">
-          <img class="teacher-card__avatar" src="images/teacher-5.jpg" alt="Фото Сергея Кузнецова">
-          <h3 class="teacher-card__name">Сергей Кузнецов</h3>
-          <p class="teacher-card__spec">Data Scientist</p>
-          <p class="teacher-card__text">Python, анализ данных и машинное обучение.</p>
-          <p class="text-muted" style="font-size:14px;margin-bottom:14px">★ 4.9 · 4 курса</p>
-          <a href="course.html" class="btn btn--outline btn--sm">Курсы преподавателя</a>
-        </article>
-
-        <article class="teacher-card">
-          <img class="teacher-card__avatar" src="images/teacher-6.jpg" alt="Фото Елены Орловой">
-          <h3 class="teacher-card__name">Елена Орлова</h3>
-          <p class="teacher-card__spec">Коуч по карьере</p>
-          <p class="teacher-card__text">Помогает строить личный бренд и развивать карьеру.</p>
-          <p class="text-muted" style="font-size:14px;margin-bottom:14px">★ 4.6 · 2 курса</p>
-          <a href="course.html" class="btn btn--outline btn--sm">Курсы преподавателя</a>
-        </article>
-
+      <!-- Сетка преподавателей (загружается из базы данных) -->
+      <div class="teachers-grid" id="teachers-list-container">
+        <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--color-text-muted)">
+          Загрузка профилей преподавателей из базы данных...
+        </div>
       </div>
     </div>
   </main>
 
+  <!-- Подвал сайта -->
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
         <div>
-          <a href="index.html" class="logo" style="color:#fff"><span class="logo__mark">E</span><span>EduVerse</span></a>
-          <p class="mt-20" style="font-size:14px;color:#9ca3af">Открываем знания всему миру.</p>
+          <a href="index.html" class="logo logo--footer">EduVerse</a>
+          <p class="footer__text">Платформа онлайн-обучения нового поколения.</p>
         </div>
         <div>
-          <h4 class="footer__title">Платформа</h4>
+          <h4 class="footer__title">Навигация</h4>
           <ul class="footer__list">
             <li><a href="catalog.html">Каталог курсов</a></li>
             <li><a href="teachers.html">Преподаватели</a></li>
             <li><a href="blog.html">Блог</a></li>
             <li><a href="about.html">О нас</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer__title">Студентам</h4>
-          <ul class="footer__list">
-            <li><a href="my-courses.html">Мои курсы</a></li>
-            <li><a href="auth.html">Вход / Регистрация</a></li>
           </ul>
         </div>
         <div>
@@ -129,10 +79,58 @@
           </ul>
         </div>
       </div>
-      <div class="footer__bottom">© 2025 EduVerse. Все права защищены.</div>
+      <div class="footer__bottom">© 2026 EduVerse. Все права защищены.</div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const container = document.getElementById('teachers-list-container');
+      try {
+        const teachers = await EduVerse.api('/api/teachers');
+        if (!teachers || teachers.length === 0) {
+          container.innerHTML = '<p class="text-muted">Преподаватели не найдены.</p>';
+          return;
+        }
+
+        container.innerHTML = teachers.map(t => {
+          const coursesListHtml = t.courses && t.courses.length > 0
+            ? t.courses.map(c => `
+                <a href="course.html?id=${c.id}" style="display:inline-flex;align-items:center;gap:6px;background:#f1f5f9;border-radius:6px;padding:4px 10px;font-size:12px;color:var(--color-primary);text-decoration:none;font-weight:600">
+                  <span>📖</span> <span>${c.title}</span>
+                </a>
+              `).join('')
+            : '<span class="text-muted" style="font-size:13px">Курсы на стадии разработки</span>';
+
+          return `
+            <article class="teacher-card" style="display:flex;flex-direction:column;justify-content:space-between">
+              <div>
+                <img class="teacher-card__avatar" src="${t.avatar || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80'}" alt="${t.full_name}" style="width:100px;height:100px;border-radius:50%;object-fit:cover;margin:0 auto 16px;border:3px solid var(--color-primary-light)">
+                
+                <h3 class="teacher-card__name">${t.full_name}</h3>
+                <p class="teacher-card__spec" style="color:var(--color-primary);font-weight:600;margin-bottom:6px">${t.expertise || 'Эксперт'}</p>
+                
+                <p class="text-muted" style="font-size:13px;margin-bottom:12px">★ ${t.avg_rating} · ${t.courses_count} курсов · ${t.experience || ''}</p>
+                <p class="teacher-card__text" style="font-size:14px;line-height:1.5;margin-bottom:16px">${t.bio || ''}</p>
+              </div>
+
+              <div>
+                <div style="font-size:12px;font-weight:700;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:8px">Курсы автора:</div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px">
+                  ${coursesListHtml}
+                </div>
+                ${t.courses && t.courses.length > 0 ? `
+                  <a href="course.html?id=${t.courses[0].id}" class="btn btn--outline btn--sm btn--block">Смотреть программу →</a>
+                ` : ''}
+              </div>
+            </article>
+          `;
+        }).join('');
+      } catch (err) {
+        container.innerHTML = `<p style="color:var(--color-danger)">Ошибка загрузки преподавателей: ${err.message}</p>`;
+      }
+    });
+  </script>
 </body>
 </html>

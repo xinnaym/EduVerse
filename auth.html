@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Регистрация и вход на платформе EduVerse.">
+  <meta name="description" content="Регистрация и авторизация на платформе EduVerse. Выбор роли (студент/преподаватель), вход и восстановление пароля.">
   <title>Вход и регистрация — EduVerse</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+  <!-- Шапка сайта -->
   <header class="header">
     <div class="container header__inner">
-      <a href="index.html" class="logo"><span class="logo__mark">E</span><span>EduVerse</span></a>
+      <a href="index.html" class="logo">EduVerse</a>
       <nav class="nav" id="nav">
         <ul class="nav__list">
           <li><a href="catalog.html" class="nav__link">Каталог курсов</a></li>
@@ -29,95 +30,267 @@
   </header>
 
   <main>
-    <div class="container">
+    <div class="container" style="padding:40px 20px 80px">
+      <!-- Переключатель вкладок: Вход / Регистрация / Восстановление -->
+      <div style="max-width:480px;margin:0 auto 20px;display:flex;background:#f1f5f9;border-radius:12px;padding:4px">
+        <button id="tab-login-btn" class="btn btn--primary" style="flex:1;border-radius:8px" onclick="showAuthTab('login')">Вход</button>
+        <button id="tab-register-btn" class="btn btn--ghost" style="flex:1;border-radius:8px" onclick="showAuthTab('register')">Регистрация</button>
+      </div>
 
-      <!-- ===== Форма входа ===== -->
-      <section class="auth" id="login">
-        <h1 class="auth__title">Вход</h1>
-        <p class="auth__subtitle">Рады видеть вас снова на EduVerse</p>
+      <!-- ===== 1. ФОРМА АВТОРИЗАЦИИ ===== -->
+      <section class="auth" id="login-section">
+        <h1 class="auth__title">Вход в аккаунт</h1>
+        <p class="auth__subtitle">Введите ваш email и пароль для продолжения</p>
 
-        <form onsubmit="return false;">
+        <form id="login-form" onsubmit="handleLogin(event)">
           <div class="form__group">
             <label class="form__label" for="login-email">Электронная почта</label>
             <input class="form__input" type="email" id="login-email" placeholder="you@example.com" required>
           </div>
+          
           <div class="form__group">
             <label class="form__label" for="login-password">Пароль</label>
             <input class="form__input" type="password" id="login-password" placeholder="••••••••" required>
           </div>
-          <div class="form__group" style="display:flex;justify-content:space-between;align-items:center">
-            <label class="form__check"><input type="checkbox"> Запомнить меня</label>
-            <a href="#reset" style="font-size:14px;color:var(--color-primary);font-weight:600">Забыли пароль?</a>
+          
+          <div class="form__group">
+            <label class="form__label" for="login-password">Пароль</label>
+            <input class="form__input" type="password" id="login-password" placeholder="••••••••" required value="student123">
           </div>
-          <button type="submit" class="btn btn--primary btn--block">Войти</button>
+
+          <div class="form__group" style="display:flex;justify-content:space-between;align-items:center">
+            <label class="form__check"><input type="checkbox" id="remember-me" checked> Запомнить меня</label>
+            <a href="javascript:void(0)" onclick="showAuthTab('reset')" style="font-size:14px;color:var(--color-primary);font-weight:600">Забыли пароль?</a>
+          </div>
+
+          <button type="submit" id="login-submit-btn" class="btn btn--primary btn--block">Войти в EduVerse</button>
         </form>
 
-        <p class="auth__footer">Нет аккаунта? <a href="#register">Зарегистрироваться</a></p>
+        <p class="auth__footer">Ещё нет аккаунта? <a href="javascript:void(0)" onclick="showAuthTab('register')">Зарегистрироваться</a></p>
       </section>
 
-      <!-- ===== Форма регистрации ===== -->
-      <section class="auth" id="register">
+      <!-- ===== 2. ФОРМА РЕГИСТРАЦИИ ===== -->
+      <section class="auth" id="register-section" style="display:none">
         <h1 class="auth__title">Регистрация</h1>
-        <p class="auth__subtitle">Создайте аккаунт и начните обучение</p>
+        <p class="auth__subtitle">Присоединяйтесь к платформе EduVerse прямо сейчас</p>
 
-        <form onsubmit="return false;">
+        <form id="register-form" onsubmit="handleRegister(event)">
           <div class="form__group">
-            <label class="form__label" for="reg-fio">ФИО</label>
-            <input class="form__input" type="text" id="reg-fio" placeholder="Иванов Иван Иванович" required>
+            <label class="form__label" for="reg-fullname">ФИО (Фамилия Имя Отчество)</label>
+            <input class="form__input" type="text" id="reg-fullname" placeholder="Иванов Иван Иванович" required>
           </div>
+
           <div class="form__group">
             <label class="form__label" for="reg-email">Электронная почта</label>
-            <input class="form__input" type="email" id="reg-email" placeholder="you@example.com" required>
+            <input class="form__input" type="email" id="reg-email" placeholder="ivanov@example.com" required>
           </div>
+
+          <!-- Выбор роли: Студент или Преподаватель -->
+          <div class="form__group">
+            <label class="form__label">Выберите вашу роль:</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px">
+              <label style="border:1.5px solid var(--color-primary);padding:12px;border-radius:10px;display:flex;align-items:center;gap:8px;cursor:pointer;background:var(--color-primary-light)" id="role-student-label">
+                <input type="radio" name="reg-role" value="student" checked onchange="updateRoleUi()">
+                <span>👨‍🎓 Студент</span>
+              </label>
+              <label style="border:1.5px solid #e2e8f0;padding:12px;border-radius:10px;display:flex;align-items:center;gap:8px;cursor:pointer" id="role-teacher-label">
+                <input type="radio" name="reg-role" value="teacher" onchange="updateRoleUi()">
+                <span>👩‍🏫 Преподаватель</span>
+              </label>
+            </div>
+          </div>
+
           <div class="form__row">
             <div class="form__group">
               <label class="form__label" for="reg-password">Пароль</label>
-              <input class="form__input" type="password" id="reg-password" placeholder="••••••••" required>
+              <input class="form__input" type="password" id="reg-password" placeholder="Не менее 6 символов" required minlength="6">
             </div>
             <div class="form__group">
-              <label class="form__label" for="reg-password2">Подтверждение пароля</label>
-              <input class="form__input" type="password" id="reg-password2" placeholder="••••••••" required>
+              <label class="form__label" for="reg-password-confirm">Подтверждение пароля</label>
+              <input class="form__input" type="password" id="reg-password-confirm" placeholder="Повторите пароль" required minlength="6">
             </div>
           </div>
+
           <div class="form__group">
-            <label class="form__label" for="reg-role">Роль</label>
-            <select class="form__select" id="reg-role">
-              <option value="student">Студент</option>
-              <option value="teacher">Преподаватель</option>
-            </select>
+            <label class="form__check">
+              <input type="checkbox" required checked>
+              <span>Согласен с <a href="#" style="color:var(--color-primary)">условиями использования</a> и обработкой персональных данных</span>
+            </label>
           </div>
-          <div class="form__group">
-            <label class="form__check"><input type="checkbox" required> Я согласен с условиями использования</label>
-          </div>
-          <button type="submit" class="btn btn--primary btn--block">Создать аккаунт</button>
+
+          <button type="submit" id="reg-submit-btn" class="btn btn--primary btn--block">Зарегистрироваться</button>
         </form>
 
-        <p class="auth__footer">Уже есть аккаунт? <a href="#login">Войти</a></p>
+        <p class="auth__footer">Уже зарегистрированы? <a href="javascript:void(0)" onclick="showAuthTab('login')">Войти</a></p>
       </section>
 
-      <!-- ===== Восстановление пароля ===== -->
-      <section class="auth" id="reset">
+      <!-- ===== 3. ФОРМА ВОССТАНОВЛЕНИЯ ПАРОЛЯ ===== -->
+      <section class="auth" id="reset-section" style="display:none">
         <h1 class="auth__title">Восстановление пароля</h1>
-        <p class="auth__subtitle">Укажите email — мы отправим ссылку для сброса</p>
-        <form onsubmit="return false;">
+        <p class="auth__subtitle">Введите email, указанный при регистрации, и мы отправим ссылку для сброса пароля</p>
+
+        <form id="reset-form" onsubmit="handleResetPassword(event)">
           <div class="form__group">
             <label class="form__label" for="reset-email">Электронная почта</label>
             <input class="form__input" type="email" id="reset-email" placeholder="you@example.com" required>
           </div>
-          <button type="submit" class="btn btn--primary btn--block">Отправить ссылку</button>
-        </form>
-        <p class="auth__footer"><a href="#login">← Вернуться ко входу</a></p>
-      </section>
 
+          <button type="submit" class="btn btn--primary btn--block">Отправить инструкции</button>
+        </form>
+
+        <p class="auth__footer">Вспомнили пароль? <a href="javascript:void(0)" onclick="showAuthTab('login')">Вернуться к авторизации</a></p>
+      </section>
     </div>
   </main>
 
+  <!-- Подвал сайта -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__bottom" style="border:none;padding-top:0">© 2025 EduVerse. Все права защищены.</div>
+      <div class="footer__bottom">© 2026 EduVerse. Все права защищены.</div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash === '#register') {
+        showAuthTab('register');
+      } else if (window.location.hash === '#reset') {
+        showAuthTab('reset');
+      }
+    });
+
+    function showAuthTab(tab) {
+      const loginSec = document.getElementById('login-section');
+      const regSec = document.getElementById('register-section');
+      const resetSec = document.getElementById('reset-section');
+      const loginBtn = document.getElementById('tab-login-btn');
+      const regBtn = document.getElementById('tab-register-btn');
+
+      loginSec.style.display = 'none';
+      regSec.style.display = 'none';
+      resetSec.style.display = 'none';
+
+      if (tab === 'register') {
+        regSec.style.display = 'block';
+        loginBtn.className = 'btn btn--ghost';
+        regBtn.className = 'btn btn--primary';
+        window.location.hash = 'register';
+      } else if (tab === 'reset') {
+        resetSec.style.display = 'block';
+        loginBtn.className = 'btn btn--ghost';
+        regBtn.className = 'btn btn--ghost';
+        window.location.hash = 'reset';
+      } else {
+        loginSec.style.display = 'block';
+        loginBtn.className = 'btn btn--primary';
+        regBtn.className = 'btn btn--ghost';
+        window.location.hash = 'login';
+      }
+    }
+
+    function updateRoleUi() {
+      const studentLabel = document.getElementById('role-student-label');
+      const teacherLabel = document.getElementById('role-teacher-label');
+      const role = document.querySelector('input[name="reg-role"]:checked').value;
+
+      if (role === 'student') {
+        studentLabel.style.borderColor = 'var(--color-primary)';
+        studentLabel.style.background = 'var(--color-primary-light)';
+        teacherLabel.style.borderColor = '#e2e8f0';
+        teacherLabel.style.background = 'transparent';
+      } else {
+        teacherLabel.style.borderColor = 'var(--color-primary)';
+        teacherLabel.style.background = 'var(--color-primary-light)';
+        studentLabel.style.borderColor = '#e2e8f0';
+        studentLabel.style.background = 'transparent';
+      }
+    }
+
+    async function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+
+      try {
+        const res = await EduVerse.api('/api/auth/login', {
+          method: 'POST',
+          body: { email, password }
+        });
+
+        EduVerse.setUser(res.user);
+        EduVerse.showToast(res.message, 'success');
+
+        // Редирект в зависимости от роли
+        redirectByRole(res.user.role);
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    async function demoLogin(email, password) {
+      document.getElementById('login-email').value = email;
+      document.getElementById('login-password').value = password;
+      showAuthTab('login');
+      document.getElementById('login-form').dispatchEvent(new Event('submit'));
+    }
+
+    async function handleRegister(e) {
+      e.preventDefault();
+      const full_name = document.getElementById('reg-fullname').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const role = document.querySelector('input[name="reg-role"]:checked').value;
+      const password = document.getElementById('reg-password').value;
+      const confirm = document.getElementById('reg-password-confirm').value;
+
+      if (password !== confirm) {
+        EduVerse.showToast('Пароли не совпадают!', 'error');
+        return;
+      }
+
+      try {
+        const res = await EduVerse.api('/api/auth/register', {
+          method: 'POST',
+          body: { full_name, email, password, role }
+        });
+
+        EduVerse.setUser(res.user);
+        EduVerse.showToast(res.message, 'success');
+
+        redirectByRole(res.user.role);
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    async function handleResetPassword(e) {
+      e.preventDefault();
+      const email = document.getElementById('reset-email').value.trim();
+
+      try {
+        const res = await EduVerse.api('/api/auth/reset-password', {
+          method: 'POST',
+          body: { email }
+        });
+
+        EduVerse.showToast(res.message, 'success');
+        setTimeout(() => showAuthTab('login'), 2000);
+      } catch (err) {
+        EduVerse.showToast(err.message, 'error');
+      }
+    }
+
+    function redirectByRole(role) {
+      setTimeout(() => {
+        if (role === 'teacher') {
+          window.location.href = 'teacher.html';
+        } else if (role === 'admin') {
+          window.location.href = 'admin.html';
+        } else {
+          window.location.href = 'my-courses.html';
+        }
+      }, 700);
+    }
+  </script>
 </body>
 </html>
